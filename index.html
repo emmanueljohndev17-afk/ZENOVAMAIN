@@ -3,413 +3,653 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Zenova — Tools for the Future of Learning</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet">
+<title>Zenova — Future of Learning</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Plus Jakarta Sans',sans-serif;background:#ffffff;color:#0c1a2e;overflow-x:hidden}
+body{font-family:'Outfit',sans-serif;background:#ffffff;color:#0d1b3e;overflow-x:hidden}
 
 :root{
-  --ink:#0c1a2e;
-  --ink2:#1e3352;
-  --ink3:#2a4a73;
-  --steel:#f1f5fb;
-  --steel2:#e5ecf8;
-  --steel3:#d0ddf0;
-  --muted:#6b7c99;
+  --navy:#0d1b3e;
+  --navy2:#152347;
+  --navy3:#1e3060;
+  --navy4:#2a4080;
   --blue:#1a56db;
   --blue2:#2563eb;
-  --bluesoft:#eff5ff;
-  --white:#fff;
-  --r:14px;
-  --rl:22px;
+  --blue-light:#dbeafe;
+  --blue-lighter:#eff6ff;
+  --white:#ffffff;
+  --off-white:#f8faff;
+  --grey:#f1f5fd;
+  --grey2:#e4ecfa;
+  --muted:#6b7c99;
+  --muted2:#94a3b8;
+  --text:#0d1b3e;
+  --text2:#3d5080;
+  --gold:#f59e0b;
+  --green:#059669;
+  --border:#e2eaf8;
+  --shadow:0 4px 24px rgba(13,27,62,.08);
+  --shadow-lg:0 12px 48px rgba(13,27,62,.13);
 }
 
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:#f8faff}
-::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:10px}
+::-webkit-scrollbar-thumb{background:var(--blue2);border-radius:4px}
 
-/* ===== NAVBAR ===== */
+/* NAV */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:9999;
-  height:68px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;transition:background .35s,box-shadow .35s;
+  height:70px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 5%;transition:all .4s;
 }
 nav.scrolled{
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
-  box-shadow:0 1px 0 rgba(12,26,46,.07);
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  box-shadow:0 1px 0 var(--border);
 }
 .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none}
-.nav-logo img{height:38px;border-radius:9px;object-fit:contain}
-.nav-wordmark{
-  font-family:'Playfair Display',serif;
-  font-size:1.2rem;font-weight:700;
-  color:#fff;letter-spacing:-.01em;transition:color .3s;
-}
-nav.scrolled .nav-wordmark{color:var(--ink)}
+.nav-logo img{height:36px;border-radius:9px;object-fit:contain}
+.nav-wordmark{font-family:'Fraunces',serif;font-size:1.3rem;font-weight:700;color:#fff;letter-spacing:-.02em;transition:color .3s}
+nav.scrolled .nav-wordmark{color:var(--navy)}
 .nav-links{display:flex;gap:2px;list-style:none;align-items:center}
-.nav-links a{
-  font-size:.78rem;font-weight:500;
-  color:rgba(255,255,255,.7);text-decoration:none;
-  padding:7px 12px;border-radius:8px;transition:all .2s;
-}
-nav.scrolled .nav-links a{color:var(--muted)}
-.nav-links a:hover{color:var(--blue2)!important;background:var(--bluesoft)}
-.nav-cta{
-  background:var(--ink)!important;color:#fff!important;
-  padding:8px 20px!important;border-radius:100px!important;
-  font-weight:600!important;font-size:.8rem!important;
-}
+.nav-links a{font-size:.82rem;font-weight:500;color:rgba(255,255,255,.75);text-decoration:none;padding:8px 13px;border-radius:9px;transition:all .2s}
+nav.scrolled .nav-links a{color:var(--text2)}
+.nav-links a:hover{color:var(--blue2)!important;background:var(--blue-lighter)}
+.nav-cta{background:var(--navy)!important;color:#fff!important;padding:9px 22px!important;border-radius:100px!important;font-weight:600!important;font-size:.82rem!important}
 nav.scrolled .nav-cta{background:var(--blue2)!important}
-.nav-cta:hover{opacity:.85;background:none!important}
+.nav-cta:hover{opacity:.9;transform:translateY(-1px)}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
 .hamburger span{display:block;width:22px;height:1.5px;background:#fff;border-radius:2px;transition:all .3s}
-nav.scrolled .hamburger span{background:var(--ink)}
+nav.scrolled .hamburger span{background:var(--navy)}
 
-/* ===== HERO ===== */
+/* HERO */
 #home{
-  min-height:100vh;background:var(--ink);
-  position:relative;overflow:hidden;
-  display:flex;align-items:center;
-  padding:110px 5% 90px;
+  min-height:100vh;
+  background:linear-gradient(155deg,var(--navy) 0%,var(--navy2) 40%,var(--navy3) 75%,#1a3a7a 100%);
+  position:relative;overflow:hidden;display:flex;align-items:center;
+  padding:120px 5% 90px;
 }
-.hero-canvas{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.hero-canvas::before{
+.hero-dots{position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.22) 0%,transparent 65%);top:-80px;right:8%;pointer-events:none}
+.hero-ring{position:absolute;width:700px;height:700px;border-radius:50%;border:1px solid rgba(255,255,255,.05);top:-220px;right:-180px;pointer-events:none}
+.hero-inner{max-width:1200px;width:100%;margin:0 auto;display:grid;grid-template-columns:1.15fr 1fr;gap:70px;align-items:center;position:relative;z-index:2}
+
+.hero-eyebrow{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.13);border-radius:100px;padding:5px 16px 5px 8px;font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:26px}
+.ey-dot{width:22px;height:22px;border-radius:50%;background:rgba(37,99,235,.4);display:flex;align-items:center;justify-content:center}
+.ey-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:#93c5fd;animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.35);opacity:.5}}
+
+.hero-h1{font-family:'Fraunces',serif;font-size:clamp(3rem,5.5vw,5.6rem);font-weight:900;line-height:.95;letter-spacing:-.03em;color:#fff;margin-bottom:24px}
+.hero-h1 .grad{display:block;font-style:italic;background:linear-gradient(120deg,#93c5fd 0%,#bfdbfe 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:1rem;font-weight:400;color:rgba(255,255,255,.55);line-height:1.9;max-width:470px;margin-bottom:38px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:50px}
+.btn-white{display:inline-flex;align-items:center;gap:9px;background:#fff;color:var(--navy);font-family:'Outfit',sans-serif;font-weight:700;font-size:.85rem;padding:14px 28px;border-radius:100px;text-decoration:none;transition:all .3s;box-shadow:0 4px 20px rgba(0,0,0,.2)}
+.btn-white:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.btn-ghost-w{display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.65);font-weight:500;font-size:.85rem;padding:14px 24px;border-radius:100px;text-decoration:none;border:1px solid rgba(255,255,255,.18);transition:all .3s}
+.btn-ghost-w:hover{color:#fff;border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.07)}
+
+.hero-stats{display:flex;gap:36px}
+.hs{display:flex;flex-direction:column;gap:3px}
+.hs strong{font-family:'Fraunces',serif;font-size:1.9rem;font-weight:700;color:#fff;line-height:1}
+.hs span{font-size:.7rem;font-weight:500;color:rgba(255,255,255,.42);letter-spacing:.08em;text-transform:uppercase}
+
+.hero-right{display:flex;justify-content:center;align-items:center}
+.hphone-wrap{position:relative;display:inline-block}
+.hphone{width:255px;background:#fff;border-radius:44px;border:8px solid rgba(255,255,255,.14);box-shadow:0 40px 80px rgba(0,0,0,.45),0 0 0 1px rgba(255,255,255,.07);overflow:hidden;animation:fp 4.5s ease-in-out infinite}
+@keyframes fp{0%,100%{transform:translateY(0) rotate(.8deg)}50%{transform:translateY(-16px) rotate(.8deg)}}
+.hphone img{width:100%;display:block}
+.hphone-notch{position:absolute;top:14px;left:50%;transform:translateX(-50%);width:88px;height:24px;background:var(--navy);border-radius:100px;z-index:3}
+.fcard{position:absolute;background:#fff;border-radius:16px;padding:13px 16px;box-shadow:0 8px 32px rgba(13,27,62,.18);z-index:4;min-width:130px}
+.fcard-a{right:-52px;top:22%;animation:fa 5s ease-in-out infinite}
+.fcard-b{left:-58px;bottom:27%;animation:fb 6s ease-in-out infinite}
+@keyframes fa{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+@keyframes fb{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.fc-ico{width:32px;height:32px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.85rem;margin-bottom:7px}
+.fc-lbl{font-size:.6rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+.fc-val{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:var(--navy)}
+.fc-sub{font-size:.62rem;color:var(--muted2);margin-top:2px}
+
+/* SHARED */
+section{position:relative;z-index:1}
+.pad{padding:96px 5%}
+.sc{text-align:center;max-width:620px;margin:0 auto 60px}
+.stag{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--blue2);margin-bottom:13px}
+.stag i{font-size:.6rem}
+.sh2{font-family:'Fraunces',serif;font-size:clamp(2rem,3.5vw,2.9rem);font-weight:800;line-height:1.1;letter-spacing:-.03em;color:var(--navy);margin-bottom:14px}
+.sbody{font-size:.95rem;color:var(--text2);line-height:1.85}
+
+/* FEATURES */
+#features{background:#fff}
+.feat-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feat{background:var(--off-white);border:1.5px solid var(--border);border-radius:18px;padding:28px 26px;transition:all .35s;position:relative;overflow:hidden}
+.feat:hover{border-color:rgba(37,99,235,.35);box-shadow:0 8px 32px rgba(37,99,235,.1);transform:translateY(-3px)}
+.feat-ico{width:50px;height:50px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.25rem;margin-bottom:18px;border:1.5px solid var(--border);background:#fff}
+.feat h3{font-family:'Fraunces',serif;font-size:1.05rem;font-weight:700;color:var(--navy);margin-bottom:8px}
+.feat p{font-size:.84rem;color:var(--text2);line-height:1.75}
+.feat-pill{display:inline-block;margin-top:14px;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:4px 11px;border-radius:100px;background:var(--blue-lighter);color:var(--blue2);border:1px solid var(--blue-light)}
+
+/* APP PREVIEW */
+#preview{background:var(--off-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.prev-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center}
+.phones-row{display:flex;gap:12px;align-items:flex-end;justify-content:center}
+.phone-m{background:linear-gradient(145deg,#1a2a5e,#0d1b40);border-radius:36px;border:2px solid rgba(255,255,255,.06);overflow:hidden;flex-shrink:0}
+.phone-m img{width:100%;display:block}
+.pm-main{width:175px;border-radius:36px;box-shadow:0 28px 64px rgba(13,27,62,.28),0 0 0 6px rgba(255,255,255,.06)}
+.pm-side{width:135px;opacity:.7;filter:brightness(.82)}
+.pm-side.right{align-self:flex-start}
+.prev-content .stag{justify-content:flex-start}
+.prev-content .sh2{text-align:left;font-size:clamp(1.7rem,2.5vw,2.3rem)}
+.prev-content .sbody{text-align:left}
+.check-list{margin-top:22px;display:flex;flex-direction:column;gap:10px}
+.ci{display:flex;align-items:flex-start;gap:11px;padding:12px 16px;background:#fff;border:1.5px solid var(--border);border-radius:12px;transition:border-color .2s,box-shadow .2s}
+.ci:hover{border-color:rgba(37,99,235,.3);box-shadow:0 4px 16px rgba(37,99,235,.07)}
+.ci-chk{width:22px;height:22px;border-radius:6px;background:var(--blue-lighter);color:var(--blue2);display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0;margin-top:1px;border:1px solid var(--blue-light)}
+.ci span{font-size:.85rem;color:var(--text2);line-height:1.6}
+.ci span strong{color:var(--navy);font-weight:600}
+.prev-btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
+.btn-navy{display:inline-flex;align-items:center;gap:8px;background:var(--navy);color:#fff;font-weight:600;font-size:.84rem;padding:12px 24px;border-radius:100px;text-decoration:none;transition:all .3s}
+.btn-navy:hover{background:var(--navy3);transform:translateY(-2px);box-shadow:0 8px 24px rgba(13,27,62,.25)}
+.btn-navy-out{display:inline-flex;align-items:center;gap:8px;color:var(--navy);font-weight:500;font-size:.84rem;padding:12px 22px;border-radius:100px;text-decoration:none;border:1.5px solid var(--border);transition:all .3s}
+.btn-navy-out:hover{border-color:var(--navy);background:var(--off-white);transform:translateY(-1px)}
+
+/* CHALLENGES */
+#challenges{background:#fff}
+.chal-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.chal{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:26px;transition:all .35s}
+.chal:hover{box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.22);transform:translateY(-3px)}
+.chal-badge{display:inline-flex;align-items:center;gap:6px;font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:100px;margin-bottom:14px;background:var(--cbg,var(--blue-lighter));color:var(--cc,var(--blue2));border:1px solid var(--cb,var(--blue-light))}
+.chal h3{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.3}
+.chal p{font-size:.82rem;color:var(--text2);line-height:1.72;margin-bottom:14px}
+.chal-meta{display:flex;align-items:center;justify-content:space-between}
+.chal-dur{font-size:.72rem;color:var(--muted);display:flex;align-items:center;gap:5px}
+.chal-join{font-size:.72rem;font-weight:600;color:var(--blue2);padding:6px 14px;border-radius:100px;cursor:pointer;background:var(--blue-lighter);border:1px solid var(--blue-light);text-decoration:none;transition:all .2s}
+.chal-join:hover{background:var(--blue2);color:#fff;border-color:var(--blue2)}
+.chal-prog{margin-top:14px}
+.chal-bg{height:5px;background:var(--grey2);border-radius:5px;overflow:hidden}
+.chal-fill{height:100%;border-radius:5px;background:var(--bcolor,var(--blue2));transition:width 1.2s ease;width:0%}
+.chal-lbl{font-size:.64rem;color:var(--muted);margin-top:5px;display:flex;justify-content:space-between}
+
+/* CONTENT */
+#content{background:var(--off-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cont-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:18px}
+.art{background:#fff;border:1.5px solid var(--border);border-radius:18px;overflow:hidden;transition:all .35s}
+.art:hover{box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.18);transform:translateY(-3px)}
+.art-img{aspect-ratio:16/10;overflow:hidden;position:relative;background:linear-gradient(135deg,var(--navy) 0%,var(--navy3) 100%);display:flex;align-items:center;justify-content:center;font-size:3rem}
+.art-img.tall{aspect-ratio:4/3}
+.art-cat{position:absolute;bottom:12px;left:12px;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:#fff;color:var(--navy);padding:4px 10px;border-radius:100px}
+.art-body{padding:20px}
+.art-body h4{font-family:'Fraunces',serif;font-size:.97rem;font-weight:700;color:var(--navy);margin-bottom:7px;line-height:1.4}
+.art-body p{font-size:.8rem;color:var(--text2);line-height:1.72;margin-bottom:13px}
+.art-foot{display:flex;align-items:center;justify-content:space-between}
+.art-read{font-size:.73rem;color:var(--blue2);font-weight:600;text-decoration:none;transition:color .2s}
+.art-read:hover{color:var(--navy)}
+.art-time{font-size:.67rem;color:var(--muted2)}
+
+/* HOW */
+#how{background:#fff}
+.how-wrap{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.how-steps{display:flex;flex-direction:column}
+.hw{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--border);transition:all .3s}
+.hw:last-child{border:none}
+.hw:hover .hw-num{background:var(--navy);color:#fff;border-color:var(--navy)}
+.hw-num{width:40px;height:40px;border-radius:11px;background:#fff;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Fraunces',serif;font-size:.88rem;font-weight:700;color:var(--muted);flex-shrink:0;transition:all .3s}
+.hw-con h4{font-family:'Fraunces',serif;font-size:.97rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.hw-con p{font-size:.82rem;color:var(--text2);line-height:1.75}
+.how-visual{background:linear-gradient(145deg,var(--navy) 0%,var(--navy3) 100%);border-radius:24px;overflow:hidden;height:460px;display:flex;align-items:center;justify-content:center;position:relative;box-shadow:var(--shadow-lg)}
+.how-visual::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:28px 28px}
+.how-phone-inner{width:200px;background:#fff;border-radius:36px;border:6px solid rgba(255,255,255,.1);overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);position:relative;z-index:1}
+.how-phone-inner img{width:100%;display:block}
+
+/* PRODUCTS */
+#products{background:var(--off-white);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.prod-grid{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.prod{background:#fff;border:1.5px solid var(--border);border-radius:18px;padding:28px;transition:all .35s}
+.prod:hover{box-shadow:var(--shadow-lg);border-color:rgba(37,99,235,.22);transform:translateY(-3px)}
+.prod-ico{font-size:2rem;margin-bottom:16px}
+.prod h3{font-family:'Fraunces',serif;font-size:1.08rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+.prod-lbl{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue2);margin-bottom:11px;display:block}
+.prod p{font-size:.83rem;color:var(--text2);line-height:1.75}
+.prod-clock{margin-top:16px;padding:13px 14px;background:var(--off-white);border:1px solid var(--border);border-radius:11px}
+.pc-lbl{font-size:.62rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:7px}
+.pc-row{display:flex;align-items:center;gap:6px}
+.pc-seg{text-align:center}
+.pc-seg span{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:700;color:var(--navy);background:#fff;border:1px solid var(--border);padding:4px 8px;border-radius:7px;display:block;min-width:38px}
+.pc-seg small{font-size:.52rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.pc-sep{color:var(--muted2);font-size:1.1rem;padding-top:2px}
+.prod-live{display:none;align-items:center;gap:8px;margin-top:12px;font-size:.8rem;font-weight:600;color:var(--green)}
+.prod-live .ldot{width:8px;height:8px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite}
+.prod-future{margin-top:14px;display:inline-flex;align-items:center;gap:7px;font-size:.76rem;color:var(--muted);background:var(--grey);padding:7px 12px;border-radius:8px;border:1px solid var(--border)}
+
+/* WAITLIST */
+#waitlist{background:linear-gradient(155deg,var(--navy) 0%,var(--navy3) 60%,#1a3a7a 100%);position:relative;overflow:hidden}
+#waitlist::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.wl-inner{max-width:600px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.wl-inner .stag{color:rgba(255,255,255,.55);justify-content:center}
+.wl-inner .sh2{color:#fff}
+.wl-inner .sbody{color:rgba(255,255,255,.55)}
+.wl-form{margin-top:30px;display:flex;flex-direction:column;gap:11px}
+.wl-inp{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:14px 18px;font-size:.9rem;color:#fff;font-family:'Outfit',sans-serif;outline:none;transition:border-color .2s}
+.wl-inp:focus{border-color:rgba(255,255,255,.4)}
+.wl-inp::placeholder{color:rgba(255,255,255,.35)}
+.wl-submit{background:#fff;color:var(--navy);border:none;cursor:pointer;font-family:'Outfit',sans-serif;font-weight:700;font-size:.9rem;padding:15px;border-radius:12px;transition:all .25s}
+.wl-submit:hover{background:var(--blue-light);transform:translateY(-2px)}
+.goal-wrap{margin-top:26px}
+.goal-labels{display:flex;justify-content:space-between;font-size:.76rem;color:rgba(255,255,255,.45);margin-bottom:8px}
+.goal-track{height:5px;background:rgba(255,255,255,.1);border-radius:5px;overflow:hidden}
+.goal-fill{height:100%;background:linear-gradient(90deg,#93c5fd,#bfdbfe);border-radius:5px;transition:width 1s ease;width:0%}
+.goal-note{margin-top:10px;font-size:.8rem;color:rgba(255,255,255,.4)}
+.goal-note strong{color:rgba(255,255,255,.75)}
+
+/* SOCIAL */
+#social{background:#fff}
+.soc-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start}
+.soc-wrap .stag{justify-content:flex-start}
+.soc-wrap .sh2{font-size:clamp(1.7rem,2.5vw,2.3rem);text-align:left}
+.soc-wrap .sbody{text-align:left}
+.email-row{display:inline-flex;align-items:center;gap:10px;margin-top:20px;padding:11px 18px;background:var(--off-white);border:1.5px solid var(--border);border-radius:11px}
+.email-row i{color:var(--blue2);font-size:.95rem}
+.email-row a{font-size:.84rem;color:var(--text2);text-decoration:none;font-weight:500}
+.email-row a:hover{color:var(--navy)}
+.soc-list{display:flex;flex-direction:column;gap:10px}
+.soc-link{display:flex;align-items:center;gap:13px;background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:15px 18px;text-decoration:none;transition:all .3s}
+.soc-link:hover{border-color:rgba(37,99,235,.25);box-shadow:0 4px 20px rgba(37,99,235,.09);transform:translateX(4px)}
+.si{width:40px;height:40px;border-radius:11px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.si-yt{background:#fff5f5;color:#ef4444}
+.si-ig{background:#fff0f8;color:#db2777}
+.si-fb{background:#eff6ff;color:var(--blue2)}
+.si-tt{background:#f8faff;color:var(--navy)}
+.si-wa{background:#f0fdf9;color:var(--green)}
+.soc-text strong{font-size:.84rem;color:var(--navy);display:block;margin-bottom:1px}
+.soc-text span{font-size:.71rem;color:var(--muted2)}
+.soc-arr{margin-left:auto;color:var(--muted2);font-size:.78rem;transition:transform .2s}
+.soc-link:hover .soc-arr{transform:translateX(3px)}
+
+/* FOOTER */
+footer{background:var(--navy);padding:60px 5% 32px}
+.ft-top{max-width:1180px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.08)}
+.ft-brand{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.ft-brand img{height:34px;border-radius:8px;object-fit:contain}
+.ft-brand span{font-family:'Fraunces',serif;font-size:1.15rem;font-weight:700;color:#fff}
+.ft-tag{font-size:.82rem;color:rgba(255,255,255,.38);line-height:1.75;max-width:260px;margin-top:6px}
+.ft-col h5{font-family:'Outfit',sans-serif;font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:16px}
+.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:9px}
+.ft-col ul li a{font-size:.83rem;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.ft-col ul li a:hover{color:#fff}
+.ft-bot{max-width:1180px;margin:24px auto 0;display:flex;align-items:center;justify-content:space-between}
+.ft-copy{font-size:.77rem;color:rgba(255,255,255,.3)}
+.ft-socs{display:flex;gap:8px}
+.ft-s{width:34px;height:34px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.4);font-size:.78rem;text-decoration:none;transition:all .25s}
+.ft-s:hover{background:rgba(255,255,255,.13);color:#fff}
+
+/* VIDEO DEMO */
+#demo{background:var(--navy);position:relative;overflow:hidden}
+#demo::before{content:'';position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:32px 32px;pointer-events:none}
+.demo-glow1{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.22) 0%,transparent 65%);top:-180px;right:-100px;pointer-events:none}
+.demo-glow2{position:absolute;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(139,92,246,.15) 0%,transparent 65%);bottom:-100px;left:-80px;pointer-events:none}
+.demo-inner{max-width:1100px;margin:0 auto;text-align:center;position:relative;z-index:1}
+.demo-inner .stag{color:rgba(255,255,255,.5);justify-content:center}
+.demo-inner .sh2{color:#fff}
+.demo-inner .sbody{color:rgba(255,255,255,.5);margin-bottom:56px}
+
+/* Phone frame */
+.demo-stage{
+  display:flex;align-items:center;justify-content:center;gap:60px;
+  flex-wrap:wrap;
+}
+.phone-frame-wrap{
+  position:relative;flex-shrink:0;
+  animation:demoFloat 5s ease-in-out infinite;
+}
+@keyframes demoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+
+/* Outer device body */
+.phone-frame{
+  width:300px;
+  background:linear-gradient(160deg,#1c2e50 0%,#0d1b3e 100%);
+  border-radius:52px;
+  padding:14px;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.12),
+    0 0 0 3px rgba(255,255,255,.04),
+    0 40px 100px rgba(0,0,0,.7),
+    0 0 60px rgba(37,99,235,.18);
+  position:relative;
+}
+/* Side buttons */
+.phone-frame::before{
   content:'';position:absolute;
-  width:900px;height:900px;border-radius:50%;
-  background:radial-gradient(circle,rgba(37,99,235,.18) 0%,transparent 65%);
-  top:-200px;right:-100px;
+  width:3px;height:70px;
+  background:linear-gradient(180deg,#253a6a,#1a2a50);
+  border-radius:2px 0 0 2px;
+  right:-3px;top:100px;
+  box-shadow:-1px 0 0 rgba(255,255,255,.05);
 }
-.hero-canvas::after{
+.phone-frame::after{
   content:'';position:absolute;
-  width:600px;height:600px;border-radius:50%;
-  background:radial-gradient(circle,rgba(26,86,219,.1) 0%,transparent 65%);
-  bottom:-150px;left:-80px;
+  width:3px;height:100px;
+  background:linear-gradient(180deg,#253a6a,#1a2a50);
+  border-radius:0 2px 2px 0;
+  left:-3px;top:90px;
 }
-.hero-grid{
+/* Inner bezel / screen area */
+.phone-screen{
+  background:#000;
+  border-radius:40px;
+  overflow:hidden;
+  position:relative;
+  aspect-ratio:9/19.5;
+}
+/* Notch */
+.phone-notch{
+  position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:110px;height:32px;
+  background:linear-gradient(160deg,#1c2e50,#0d1b3e);
+  border-radius:0 0 22px 22px;
+  z-index:10;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.notch-camera{
+  width:10px;height:10px;border-radius:50%;
+  background:radial-gradient(circle,#1a2a50 30%,#0a1428 100%);
+  border:1px solid rgba(255,255,255,.08);
+}
+.notch-speaker{
+  width:40px;height:4px;border-radius:4px;
+  background:rgba(255,255,255,.08);
+}
+/* Status bar */
+.phone-status{
+  position:absolute;top:0;left:0;right:0;
+  height:44px;
+  display:flex;align-items:flex-end;justify-content:space-between;
+  padding:0 22px 6px;
+  z-index:9;
+  background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,transparent 100%);
+}
+.ps-time{font-size:.62rem;font-weight:700;color:#fff;letter-spacing:.02em}
+.ps-icons{display:flex;align-items:center;gap:5px;color:#fff;font-size:.55rem}
+
+/* The actual video */
+.phone-video{
+  width:100%;height:100%;
+  display:block;
+  object-fit:cover;
+  border-radius:40px;
+}
+/* play overlay inside phone */
+.phone-overlay{
   position:absolute;inset:0;
-  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:56px 56px;
-}
-.hero-inner{
-  max-width:1160px;width:100%;margin:0 auto;
-  display:grid;grid-template-columns:1.2fr 1fr;
-  gap:60px;align-items:center;position:relative;z-index:2;
-}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
-  border-radius:100px;padding:5px 14px 5px 8px;
-  font-size:.7rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
-  color:rgba(255,255,255,.55);margin-bottom:28px;
-}
-.badge-dot{
-  width:22px;height:22px;border-radius:50%;
-  background:rgba(37,99,235,.35);
   display:flex;align-items:center;justify-content:center;
+  background:rgba(0,0,0,.4);
+  border-radius:40px;
+  cursor:pointer;
+  transition:background .3s;
+  z-index:8;
 }
-.badge-dot::after{
-  content:'';width:7px;height:7px;border-radius:50%;background:#60a5fa;
-  animation:blink 2.2s ease-in-out infinite;
+.phone-overlay:hover{background:rgba(0,0,0,.25)}
+.phone-overlay.hidden{display:none}
+.phone-play{
+  width:68px;height:68px;border-radius:50%;
+  background:rgba(255,255,255,.95);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.3rem;color:var(--navy);
+  padding-left:4px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  transition:transform .25s,box-shadow .25s;
 }
-@keyframes blink{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.3);opacity:.6}}
+.phone-overlay:hover .phone-play{transform:scale(1.08);box-shadow:0 12px 48px rgba(0,0,0,.55)}
 
-.hero-h1{
-  font-family:'Playfair Display',serif;
-  font-size:clamp(3.2rem,5.8vw,6rem);
-  font-weight:900;line-height:.95;
-  letter-spacing:-.03em;color:#fff;margin-bottom:26px;
+/* Bottom home bar */
+.phone-home{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  width:120px;height:4px;border-radius:4px;
+  background:rgba(255,255,255,.3);z-index:10;
 }
-.hero-h1 em{
-  font-style:normal;display:block;
-  background:linear-gradient(120deg,#93c5fd 10%,#e0f2fe 90%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+/* Screen shine */
+.phone-shine{
+  position:absolute;top:0;left:0;right:0;
+  height:60%;border-radius:40px 40px 0 0;
+  background:linear-gradient(160deg,rgba(255,255,255,.06) 0%,transparent 60%);
+  pointer-events:none;z-index:11;
 }
-.hero-sub{
-  font-size:1rem;font-weight:300;
-  color:rgba(255,255,255,.48);line-height:1.9;
-  max-width:460px;margin-bottom:40px;
-}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.btn-solid{
-  display:inline-flex;align-items:center;gap:8px;
-  background:#fff;color:var(--ink);
-  font-weight:700;font-size:.85rem;letter-spacing:.01em;
-  padding:13px 28px;border-radius:100px;text-decoration:none;transition:all .25s;
-}
-.btn-solid:hover{background:var(--steel2);transform:translateY(-2px)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  color:rgba(255,255,255,.55);font-weight:500;font-size:.85rem;
-  padding:13px 24px;border-radius:100px;text-decoration:none;
-  border:1px solid rgba(255,255,255,.14);transition:all .25s;
-}
-.btn-ghost:hover{color:#fff;border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.05)}
 
-.hero-right{display:flex;flex-direction:column;gap:12px}
-.app-tile{
-  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
-  border-radius:16px;padding:16px 18px;
-  display:flex;align-items:center;gap:14px;transition:all .3s;
+/* Side text content */
+.demo-side{
+  max-width:340px;text-align:left;
 }
-.app-tile:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);transform:translateX(4px)}
-.at-icon{width:46px;height:46px;border-radius:12px;overflow:hidden;flex-shrink:0;background:var(--ink2)}
-.at-icon img{width:100%;height:100%;object-fit:cover}
-.at-info h4{font-size:.88rem;font-weight:600;color:#fff}
-.at-info p{font-size:.72rem;color:rgba(255,255,255,.36);margin-top:1px}
-.at-pill{
-  margin-left:auto;font-size:.62rem;font-weight:700;
-  letter-spacing:.08em;text-transform:uppercase;
-  padding:4px 10px;border-radius:100px;white-space:nowrap;
-  background:rgba(250,204,21,.1);color:#fcd34d;border:1px solid rgba(250,204,21,.18);
+.demo-side h3{
+  font-family:'Fraunces',serif;font-size:1.7rem;font-weight:800;
+  color:#fff;line-height:1.15;letter-spacing:-.02em;margin-bottom:14px;
 }
-.hero-nums{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.hnum{
-  background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);
-  border-radius:12px;padding:15px 10px;text-align:center;
+.demo-side p{font-size:.9rem;color:rgba(255,255,255,.5);line-height:1.85;margin-bottom:28px}
+.demo-points{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.dp{display:flex;align-items:center;gap:12px}
+.dp-ico{
+  width:36px;height:36px;border-radius:10px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:.85rem;
 }
-.hnum .n{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:#fff;line-height:1}
-.hnum .l{font-size:.6rem;color:rgba(255,255,255,.25);margin-top:4px;text-transform:uppercase;letter-spacing:.08em}
-
-/* ===== TRUST BAR ===== */
-.trust-bar{
-  background:var(--steel);border-top:1px solid var(--steel2);border-bottom:1px solid var(--steel2);
-  padding:14px 5%;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;
+.dp span{font-size:.85rem;color:rgba(255,255,255,.65);font-weight:500}
+.dp span strong{color:#fff}
+.demo-tags{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:44px}
+.dtag{
+  display:inline-flex;align-items:center;gap:7px;
+  font-size:.73rem;font-weight:500;color:rgba(255,255,255,.45);
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  padding:6px 14px;border-radius:100px;
 }
-.trust-item{display:flex;align-items:center;gap:7px;font-size:.72rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.07em}
-.trust-item i{color:var(--blue2);font-size:.8rem}
+.dtag i{font-size:.62rem}
 
-/* ===== SHARED ===== */
-.eyebrow{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:var(--blue2);margin-bottom:14px;
-}
-.eyebrow::before{content:'';display:block;width:18px;height:2px;background:var(--blue2);border-radius:2px}
-.eyebrow-w{
-  display:inline-flex;align-items:center;gap:6px;
-  font-size:.68rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;
-  color:rgba(147,197,253,.7);margin-bottom:14px;
-}
-.eyebrow-w::before{content:'';display:block;width:18px;height:2px;background:rgba(147,197,253,.5);border-radius:2px}
-.heading{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,3rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:var(--ink)}
-.heading-w{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,3rem);font-weight:800;line-height:1.08;letter-spacing:-.02em;color:#fff}
-section{padding:96px 5%}
+/* ================================================================
+   RESPONSIVE — Mobile First, Properly Fixed
+   ================================================================ */
 
-/* ===== ABOUT ===== */
-#about{background:#fff}
-.about-wrap{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center}
-.about-quote{
-  margin:28px 0;border-left:3px solid var(--blue2);
-  padding:22px 28px;background:var(--bluesoft);
-  border-radius:0 var(--r) var(--r) 0;
-}
-.about-quote p{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:600;font-style:italic;color:var(--ink2);line-height:1.8}
-.about-body{font-size:.9rem;color:var(--muted);line-height:2}
-.values{display:flex;flex-direction:column;gap:10px}
-.value-row{
-  display:flex;align-items:flex-start;gap:14px;
-  padding:16px 14px;border-radius:var(--r);
-  border:1px solid var(--steel2);background:#fff;transition:all .25s;
-}
-.value-row:hover{border-color:var(--steel3);transform:translateX(5px);box-shadow:0 4px 20px rgba(12,26,46,.05)}
-.val-icon{width:40px;height:40px;flex-shrink:0;border-radius:10px;background:var(--ink);display:flex;align-items:center;justify-content:center;color:rgba(147,197,253,.9);font-size:.85rem}
-.val-text h4{font-size:.85rem;font-weight:700;color:var(--ink);margin-bottom:3px}
-.val-text p{font-size:.78rem;color:var(--muted);line-height:1.65}
-
-/* ===== PRODUCTS ===== */
-#products{background:var(--ink);position:relative;overflow:hidden}
-.products-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(26,86,219,.12),transparent)}
-.prod-hdr{text-align:center;max-width:560px;margin:0 auto 56px;position:relative;z-index:1}
-.prod-hdr p{font-size:.92rem;color:rgba(255,255,255,.38);line-height:1.85;margin-top:12px;font-style:italic}
-.prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;max-width:1040px;margin:0 auto;position:relative;z-index:1}
-.prod-card{
-  border:1px solid rgba(255,255,255,.07);border-radius:var(--rl);
-  padding:34px 28px;background:rgba(255,255,255,.03);transition:all .3s;
-}
-.prod-card:hover{border-color:rgba(255,255,255,.14);background:rgba(255,255,255,.05);transform:translateY(-6px);box-shadow:0 28px 64px rgba(0,0,0,.3)}
-.prod-card.hl{border-color:rgba(37,99,235,.25);background:linear-gradient(155deg,rgba(29,78,216,.13),rgba(12,26,46,.4))}
-.pnum{font-size:.6rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:18px}
-.p-icon{width:60px;height:60px;border-radius:16px;overflow:hidden;margin-bottom:18px;background:var(--ink2)}
-.p-icon img{width:100%;height:100%;object-fit:cover}
-.prod-card h3{font-family:'Playfair Display',serif;font-size:1.55rem;font-weight:700;color:#fff;letter-spacing:-.02em;margin-bottom:6px}
-.ptag{display:inline-block;font-size:.62rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:14px}
-.ts{background:rgba(59,130,246,.1);color:#7eb8fc;border:1px solid rgba(59,130,246,.18)}
-.tf{background:rgba(14,165,233,.1);color:#67d8f9;border:1px solid rgba(14,165,233,.18)}
-.pdesc{font-size:.88rem;font-weight:300;font-style:italic;color:rgba(255,255,255,.4);line-height:1.9;margin-bottom:18px}
-.pfeats{list-style:none;margin-bottom:24px;display:flex;flex-direction:column;gap:8px}
-.pfeats li{display:flex;align-items:center;gap:8px;font-size:.8rem;color:rgba(255,255,255,.5)}
-.pfeats li i{color:#60a5fa;font-size:.7rem;flex-shrink:0}
-
-.countdown{background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:13px 15px;margin-bottom:18px}
-.cd-head{font-size:.6rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.27);margin-bottom:9px}
-.cd-row{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
-.cd-cell{background:rgba(255,255,255,.04);border-radius:7px;padding:8px 3px;text-align:center}
-.cd-n{font-family:'Playfair Display',serif;font-size:1.25rem;font-weight:700;color:#fff;line-height:1;display:block}
-.cd-l{font-size:.5rem;color:rgba(255,255,255,.24);text-transform:uppercase;letter-spacing:.07em;margin-top:2px;display:block}
-.cd-date{font-size:.7rem;color:rgba(255,255,255,.24);margin-top:7px;text-align:center}
-.btn-download{
-  display:flex;align-items:center;justify-content:center;gap:8px;width:100%;
-  background:var(--blue2);color:#fff;font-weight:600;font-size:.85rem;
-  padding:13px 22px;border-radius:100px;text-decoration:none;transition:all .25s;
-}
-.btn-download:hover{background:#1d4ed8;transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,99,235,.4)}
-.btn-soon{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:rgba(255,255,255,.04);color:rgba(255,255,255,.2);font-weight:600;font-size:.85rem;padding:13px 22px;border-radius:100px;border:1px solid rgba(255,255,255,.06);cursor:default}
-
-/* ===== HOW IT WORKS ===== */
-#how{background:var(--steel)}
-.how-hdr{text-align:center;margin-bottom:52px}
-.how-hdr p{font-size:.92rem;color:var(--muted);margin-top:10px}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;max-width:1160px;margin:0 auto}
-.step{background:#fff;border:1px solid var(--steel2);border-radius:var(--rl);padding:28px 18px 24px;text-align:center;transition:all .25s;position:relative}
-.step:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(12,26,46,.07);border-color:var(--steel3)}
-.step-n{width:46px;height:46px;border-radius:50%;margin:0 auto 14px;background:var(--ink);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:.95rem;font-weight:700;color:#fff}
-.step h4{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:7px}
-.step p{font-size:.79rem;color:var(--muted);line-height:1.75}
-.step-arr{display:none;position:absolute;top:50px;right:-11px;color:var(--steel3);font-size:.7rem;z-index:1}
-@media(min-width:769px){.step-arr{display:block}}
-
-/* ===== VISION ===== */
-#vision{background:#fff}
-.vision-wrap{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center}
-.vbody{font-size:.9rem;color:var(--muted);line-height:2;margin-bottom:12px}
-.roadmap{display:flex;flex-direction:column;gap:8px;margin-top:26px}
-.rm-item{display:flex;align-items:center;gap:12px;background:var(--steel);border:1px solid var(--steel2);border-radius:10px;padding:11px 14px;transition:all .2s}
-.rm-item:hover{border-color:var(--steel3);transform:translateX(4px)}
-.rm-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.rm-on{background:var(--blue2)}
-.rm-off{background:var(--steel3)}
-.rm-item span{font-size:.82rem;font-weight:600;color:var(--ink2)}
-.rm-date{margin-left:auto;font-size:.72rem;color:var(--muted);white-space:nowrap}
-.v-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.vc{background:var(--ink);border-radius:var(--rl);padding:22px 18px;transition:transform .25s}
-.vc:hover{transform:translateY(-4px)}
-.vc.span2{grid-column:span 2;background:linear-gradient(130deg,var(--ink2),var(--ink3))}
-.vc .icon{font-size:1.2rem;margin-bottom:9px}
-.vc h4{font-family:'Playfair Display',serif;font-size:.9rem;font-weight:700;color:#fff;margin-bottom:5px}
-.vc p{font-size:.77rem;color:rgba(255,255,255,.35);line-height:1.65}
-
-/* ===== VIDEO PREVIEW ===== */
-#preview{background:var(--ink);position:relative;overflow:hidden}
-.preview-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 50% 40%,rgba(26,86,219,.14),transparent 60%)}
-.preview-inner{max-width:860px;margin:0 auto;position:relative;z-index:1}
-.preview-hdr{text-align:center;margin-bottom:38px}
-.preview-hdr h2{font-family:'Playfair Display',serif;font-size:clamp(1.9rem,3vw,2.8rem);font-weight:800;color:#fff;letter-spacing:-.02em;margin-bottom:10px}
-.preview-hdr p{font-size:.9rem;color:rgba(255,255,255,.38);line-height:1.8;font-style:italic}
-.video-shell{border:1px solid rgba(255,255,255,.09);border-radius:var(--rl);overflow:hidden;box-shadow:0 40px 90px rgba(0,0,0,.5);position:relative}
-.video-shell video{width:100%;display:block}
-.vid-badge{position:absolute;top:14px;left:14px;background:rgba(220,38,38,.88);color:#fff;font-size:.6rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 12px;border-radius:100px;display:flex;align-items:center;gap:5px}
-.vid-dot{width:5px;height:5px;background:#fff;border-radius:50%;animation:blink 1.4s infinite}
-
-/* ===== WAITLIST ===== */
-#waitlist{background:var(--steel)}
-.wl-center{max-width:660px;margin:0 auto;text-align:center}
-.wl-center h2{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.2vw,3rem);font-weight:800;letter-spacing:-.02em;color:var(--ink);margin-bottom:10px}
-.wl-sub{font-size:.92rem;color:var(--muted);line-height:1.85;margin-bottom:8px}
-.goal-wrap{margin:18px auto 4px;max-width:400px}
-.goal-track{background:#fff;border:1px solid var(--steel2);border-radius:100px;height:8px;overflow:hidden}
-.goal-fill{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--ink),var(--blue2));width:0%;transition:width 1.4s ease}
-.goal-note{font-size:.74rem;font-weight:600;color:var(--muted);margin-top:7px;margin-bottom:30px}
-.goal-note b{color:var(--blue2)}
-.perks{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:28px}
-.perk{background:#fff;border:1px solid var(--steel2);border-radius:var(--r);padding:16px 12px;text-align:center;transition:all .2s}
-.perk:hover{border-color:var(--steel3);transform:translateY(-3px);box-shadow:0 6px 20px rgba(12,26,46,.06)}
-.perk .pi{font-size:1.2rem;margin-bottom:6px}
-.perk h4{font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:3px}
-.perk p{font-size:.72rem;color:var(--muted);line-height:1.6}
-.wl-card{background:#fff;border:1px solid var(--steel2);border-radius:var(--rl);padding:34px 30px;box-shadow:0 10px 40px rgba(12,26,46,.06)}
-.wl-card h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:20px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
-.wl-card input{width:100%;padding:12px 15px;border:1.5px solid var(--steel2);border-radius:10px;font-family:'Plus Jakarta Sans',sans-serif;font-size:.88rem;color:var(--ink);background:#fafbff;outline:none;transition:all .2s}
-.wl-card input:focus{border-color:var(--blue2);box-shadow:0 0 0 3px rgba(37,99,235,.09);background:#fff}
-.wl-card input::placeholder{color:#b8c5da}
-.btn-join{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;background:var(--ink);color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:.92rem;font-weight:600;padding:14px 24px;border-radius:100px;border:none;cursor:pointer;transition:all .25s;margin-top:6px}
-.btn-join:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(12,26,46,.22)}
-.wl-note{font-size:.71rem;color:var(--muted);margin-top:9px;display:flex;align-items:center;justify-content:center;gap:5px}
-.wl-note i{color:var(--blue2)}
-.wl-success{display:none;padding:26px 10px;text-align:center}
-.wl-success .sc{font-size:3rem;margin-bottom:11px}
-.wl-success h3{font-family:'Playfair Display',serif;font-size:1.3rem;font-weight:700;color:var(--ink);margin-bottom:9px}
-.wl-success p{font-size:.88rem;color:var(--muted);line-height:1.85}
-
-/* ===== CONTACT ===== */
-#contact{background:#fff}
-.contact-wrap{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:start}
-.cbody{font-size:.9rem;color:var(--muted);line-height:2;margin-bottom:24px}
-.email-block{display:flex;align-items:center;gap:12px;background:var(--steel);border:1px solid var(--steel2);border-radius:12px;padding:12px 15px}
-.email-icon{width:36px;height:36px;border-radius:9px;background:var(--ink);display:flex;align-items:center;justify-content:center;color:rgba(147,197,253,.85);font-size:.8rem;flex-shrink:0}
-.email-block span{font-weight:600;font-size:.8rem;color:var(--ink)}
-.social-list{display:flex;flex-direction:column;gap:9px}
-.social-link{display:flex;align-items:center;gap:12px;background:var(--steel);border:1px solid var(--steel2);border-radius:12px;padding:12px 15px;text-decoration:none;transition:all .2s}
-.social-link:hover{transform:translateX(5px);border-color:var(--steel3);box-shadow:0 4px 18px rgba(12,26,46,.05)}
-.s-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.88rem;color:#fff;flex-shrink:0}
-.s-yt{background:#ff0000}.s-ig{background:linear-gradient(45deg,#405de6,#833ab4,#e1306c,#fd1d1d)}.s-fb{background:#1877f2}.s-tt{background:#111}.s-wa{background:#25d366}
-.s-text strong{font-size:.82rem;font-weight:700;color:var(--ink);display:block}
-.s-text span{font-size:.71rem;color:var(--muted)}
-.s-arr{margin-left:auto;color:var(--steel3);font-size:.72rem;transition:all .2s}
-.social-link:hover .s-arr{color:var(--blue2);transform:translateX(3px)}
-
-/* ===== FOOTER ===== */
-footer{background:var(--ink);padding:52px 5% 32px}
-.ft-grid{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:52px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.05);margin-bottom:24px}
-.ft-brand{display:flex;align-items:center;gap:9px;margin-bottom:10px}
-.ft-brand img{height:34px;border-radius:8px}
-.ft-brand span{font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:#fff;letter-spacing:-.01em}
-.ft-tagline{font-size:.81rem;font-style:italic;color:rgba(255,255,255,.28);line-height:1.7;max-width:220px}
-.ft-col h5{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:13px}
-.ft-col ul{list-style:none;display:flex;flex-direction:column;gap:8px}
-.ft-col ul a{font-size:.8rem;color:rgba(255,255,255,.38);text-decoration:none;transition:color .2s}
-.ft-col ul a:hover{color:rgba(147,197,253,.8)}
-.ft-bottom{max-width:1160px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.ft-copy{font-size:.73rem;color:rgba(255,255,255,.18)}
-.ft-socials{display:flex;gap:6px}
-.ft-soc{width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.3);font-size:.8rem;text-decoration:none;transition:all .2s}
-.ft-soc:hover{background:var(--blue2);color:#fff;transform:translateY(-2px)}
-
-.divider{height:1px;background:linear-gradient(90deg,transparent,var(--steel2),transparent)}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr}.hero-right{display:none}
-  .about-wrap,.vision-wrap,.contact-wrap{grid-template-columns:1fr;gap:44px}
-  .steps{grid-template-columns:1fr 1fr}.ft-grid{grid-template-columns:1fr 1fr}
-}
+/* --- TABLET 768px and below --- */
 @media(max-width:768px){
-  nav{padding:0 4%}
-  .nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:rgba(255,255,255,.99);flex-direction:column;gap:0;border-bottom:1px solid var(--steel2);box-shadow:0 10px 28px rgba(12,26,46,.08);padding:6px 4%}
-  .nav-links.open{display:flex}
-  .nav-links li{border-bottom:1px solid var(--steel2)}.nav-links li:last-child{border-bottom:none}
-  .nav-links a{display:block;padding:11px 0;color:var(--ink)!important;font-size:.9rem}
+
+  /* NAV */
   .hamburger{display:flex}
-  .prod-grid,.steps{grid-template-columns:1fr}
-  .v-grid{grid-template-columns:1fr}.vc.span2{grid-column:span 1}
-  .perks{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}
-  .wl-card{padding:24px 16px}
-  .ft-grid{grid-template-columns:1fr;gap:22px}
-  .ft-bottom{flex-direction:column;align-items:center;text-align:center}
+  .nav-links{
+    display:none;position:fixed;top:70px;left:0;right:0;bottom:0;
+    background:#fff;
+    flex-direction:column;padding:24px 6% 40px;gap:6px;
+    overflow-y:auto;z-index:9998;
+  }
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links a{
+    display:block;padding:13px 16px;border-radius:12px;
+    font-size:1rem;color:var(--navy)!important;
+    border-bottom:1px solid var(--border);
+  }
+  .nav-links li:last-child a{border-bottom:none}
+  .nav-cta{
+    background:var(--blue2)!important;color:#fff!important;
+    text-align:center!important;margin-top:8px;
+    border-radius:12px!important;border-bottom:none!important;
+    padding:14px 16px!important;font-size:1rem!important;
+  }
+
+  /* HERO */
+  #home{padding:90px 6% 60px;min-height:auto}
+  .hero-inner{grid-template-columns:1fr;gap:0}
+  .hero-right{display:none}
+  .hero-h1{font-size:2.6rem;line-height:1.05;margin-bottom:18px}
+  .hero-h1 .grad{display:inline}
+  .hero-eyebrow{font-size:.65rem;margin-bottom:20px}
+  .hero-sub{font-size:.92rem;margin-bottom:28px;max-width:100%}
+  .hero-btns{gap:10px;margin-bottom:36px}
+  .btn-white,.btn-ghost-w{padding:13px 22px;font-size:.82rem}
+  .hero-stats{gap:20px}
+  .hs strong{font-size:1.5rem}
+  .hs span{font-size:.62rem}
+
+  /* SHARED */
+  .pad{padding:64px 6%}
+  .sc{margin-bottom:36px}
+  .sh2{font-size:1.9rem}
+  .sbody{font-size:.9rem}
+
+  /* FEATURES */
+  .feat-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .feat{padding:22px 18px}
+  .feat h3{font-size:.95rem}
+  .feat p{font-size:.8rem}
+
+  /* VIDEO DEMO */
+  .demo-inner .sbody{margin-bottom:36px}
+  .demo-stage{flex-direction:column;gap:36px}
+  .phone-frame{width:240px}
+  .phone-frame::before,.phone-frame::after{display:none}
+  .demo-side{max-width:100%;text-align:center}
+  .demo-side h3{font-size:1.5rem;margin-bottom:10px}
+  .demo-side p{font-size:.85rem;margin-bottom:20px}
+  .demo-points{max-width:360px;margin:0 auto 24px}
+  .dp{text-align:left}
+  .demo-side .btn-white{margin:0 auto}
+  .demo-tags{gap:6px;margin-top:32px}
+  .dtag{font-size:.68rem;padding:5px 11px}
+
+  /* APP PREVIEW */
+  .prev-wrap{grid-template-columns:1fr;gap:36px}
+  .phones-row{justify-content:center}
+  .pm-side{display:none}
+  .pm-main{width:190px}
+  .prev-content .stag{justify-content:center}
+  .prev-content .sh2{text-align:center;font-size:1.8rem}
+  .prev-content .sbody{text-align:center}
+  .check-list{gap:8px}
+  .ci{padding:11px 14px}
+  .ci span{font-size:.82rem}
+  .prev-btns{justify-content:center;flex-direction:column;align-items:center;gap:10px}
+  .btn-navy,.btn-navy-out{width:100%;max-width:320px;justify-content:center;padding:13px 20px}
+
+  /* CHALLENGES */
+  .chal-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .chal{padding:20px 18px}
+  .chal h3{font-size:.9rem}
+  .chal p{font-size:.78rem}
+
+  /* CONTENT / BLOG */
+  .cont-grid{grid-template-columns:1fr;gap:14px}
+
+  /* HOW IT WORKS */
+  .how-wrap{grid-template-columns:1fr;gap:0}
+  .how-visual{display:none}
+  .hw{gap:16px;padding:18px 0}
+  .hw-con h4{font-size:.9rem}
+  .hw-con p{font-size:.8rem}
+
+  /* PRODUCTS */
+  .prod-grid{grid-template-columns:1fr 1fr;gap:14px}
+  .prod{padding:22px 18px}
+  .prod h3{font-size:.95rem}
+  .prod p{font-size:.8rem}
+  .pc-seg span{font-size:1rem;min-width:32px;padding:3px 6px}
+
+  /* WAITLIST */
+  #waitlist{padding:64px 6%}
+  .wl-inner .sh2{font-size:1.8rem}
+  .wl-form{gap:10px}
+  .wl-inp{padding:13px 16px;font-size:.88rem}
+  .wl-submit{padding:14px;font-size:.88rem}
+
+  /* SOCIAL */
+  .soc-wrap{grid-template-columns:1fr;gap:36px}
+  .soc-wrap .sh2{text-align:center;font-size:1.8rem}
+  .soc-wrap .sbody{text-align:center}
+  .soc-wrap .stag{justify-content:center}
+  .email-row{width:100%;justify-content:center}
+  .soc-link{padding:13px 14px}
+  .soc-text strong{font-size:.82rem}
+  .soc-text span{font-size:.68rem}
+
+  /* FOOTER */
+  footer{padding:48px 6% 28px}
+  .ft-top{grid-template-columns:1fr;gap:32px;padding-bottom:32px}
+  .ft-bot{flex-direction:column;gap:14px;text-align:center}
+  .ft-socs{justify-content:center}
 }
-@media(max-width:480px){.trust-bar{gap:14px}.hero-nums{display:none}}
+
+/* --- MOBILE 480px and below --- */
+@media(max-width:480px){
+
+  /* HERO */
+  #home{padding:85px 5% 52px}
+  .hero-h1{font-size:2.1rem}
+  .hero-eyebrow{font-size:.6rem;padding:4px 12px 4px 7px;letter-spacing:.08em}
+  .hero-sub{font-size:.88rem}
+  .btn-white,.btn-ghost-w{width:100%;justify-content:center;text-align:center}
+  .hero-stats{gap:14px}
+  .hs strong{font-size:1.35rem}
+
+  /* SHARED */
+  .pad{padding:52px 5%}
+  .sh2{font-size:1.7rem}
+
+  /* FEATURES */
+  .feat-grid{grid-template-columns:1fr;gap:12px}
+  .feat{padding:20px 18px}
+
+  /* DEMO */
+  .phone-frame{width:210px;border-radius:44px;padding:11px}
+  .phone-screen{border-radius:34px}
+  .phone-video,.phone-overlay{border-radius:34px}
+  .phone-shine{border-radius:34px 34px 0 0}
+
+  /* CHALLENGES */
+  .chal-grid{grid-template-columns:1fr;gap:12px}
+
+  /* PRODUCTS */
+  .prod-grid{grid-template-columns:1fr;gap:12px}
+
+  /* SOCIAL */
+  .si{width:38px;height:38px}
+  .soc-link{gap:11px}
+
+  /* FOOTER */
+  .ft-col{display:none}
+  .ft-top{grid-template-columns:1fr;gap:0}
+  .ft-brand span{font-size:1.05rem}
+  .ft-tag{max-width:100%}
+}
+
+/* --- SMALL PHONES 360px and below --- */
+@media(max-width:360px){
+  .hero-h1{font-size:1.85rem}
+  .hero-eyebrow{display:none}
+  .hero-stats{flex-wrap:wrap;gap:12px}
+  .hs{min-width:80px}
+  .phone-frame{width:190px}
+  .pad{padding:44px 5%}
+  .sh2{font-size:1.55rem}
+  .wl-inp,.wl-submit{font-size:.82rem}
+}
+
+/* Animations */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.reveal.visible{opacity:1;transform:none}
+.d1{transition-delay:.08s}.d2{transition-delay:.17s}.d3{transition-delay:.26s}
+.d4{transition-delay:.34s}.d5{transition-delay:.42s}
 </style>
 </head>
 <body>
 
-<!-- NAVBAR -->
+<!-- NAV -->
 <nav id="navbar">
-  <a href="#home" class="nav-logo">
-    <img src="logo.jpg" alt="Zenova">
+  <a class="nav-logo" href="#home">
+    <img src="logo.jpg" alt="Zenova" onerror="this.style.display='none'">
     <span class="nav-wordmark">Zenova</span>
   </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#products">Products</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#demo">Demo</a></li>
+    <li><a href="#preview">App</a></li>
+    <li><a href="#challenges">Challenges</a></li>
+    <li><a href="#content">Blog</a></li>
     <li><a href="#how">How It Works</a></li>
-    <li><a href="#vision">Vision</a></li>
-    <li><a href="#preview">Preview</a></li>
-    <li><a href="#contact">Contact</a></li>
     <li><a href="#waitlist" class="nav-cta">Join Waitlist</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -419,412 +659,571 @@ footer{background:var(--ink);padding:52px 5% 32px}
 
 <!-- HERO -->
 <section id="home">
-  <div class="hero-canvas"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-ring"></div>
   <div class="hero-inner">
     <div>
-      <div class="hero-badge">
-        <div class="badge-dot"></div>
-        Launching 2026 — Be First in Line
+      <div class="hero-eyebrow">
+        <div class="ey-dot"></div>
+        Now in Beta — Limited Spots Available
       </div>
-      <h1 class="hero-h1">Welcome to<br><em>Zenova</em></h1>
-      <p class="hero-sub">Smart tools built to help students learn, stay organized and stay focused — every single day.</p>
+      <h1 class="hero-h1">
+        Learn Smarter.<br>
+        <span class="grad">Achieve More.</span>
+      </h1>
+      <p class="hero-sub">Zenova is the AI-powered learning platform built for serious students — with Focus Mode, Study Challenges, Progress Tracking, and Audio Learning all in one place.</p>
       <div class="hero-btns">
-        <a href="#products" class="btn-solid"><i class="fas fa-rocket"></i> Explore Our Apps</a>
-        <a href="#waitlist" class="btn-ghost"><i class="fas fa-bell"></i> Join Waitlist</a>
+        <a href="#waitlist" class="btn-white"><i class="fas fa-bolt"></i> Get Early Access</a>
+        <a href="#preview" class="btn-ghost-w"><i class="fas fa-play-circle"></i> See the App</a>
+      </div>
+      <div class="hero-stats">
+        <div class="hs"><strong id="signupCount">12</strong><span>On Waitlist</span></div>
+        <div class="hs"><strong>100</strong><span>Total Spots</span></div>
+        <div class="hs"><strong>5★</strong><span>Beta Rating</span></div>
       </div>
     </div>
     <div class="hero-right">
-      <div class="app-tile">
-        <div class="at-icon"><img src="main.jpeg" alt="Zenova Study"></div>
-        <div class="at-info"><h4>Zenova Study</h4><p>Study Platform · Launching Mar 28</p></div>
-        <span class="at-pill">Soon</span>
-      </div>
-      <div class="app-tile">
-        <div class="at-icon"><img src="same.jpg" alt="Zenova Focus"></div>
-        <div class="at-info"><h4>Zenova Focus</h4><p>Productivity Tool · Launching Apr 28</p></div>
-        <span class="at-pill">Soon</span>
-      </div>
-      <div class="hero-nums">
-        <div class="hnum"><div class="n">2</div><div class="l">Apps Built</div></div>
-        <div class="hnum"><div class="n">100+</div><div class="l">Goal Signups</div></div>
-        <div class="hnum"><div class="n">1</div><div class="l">Mission</div></div>
+      <div class="hphone-wrap">
+        <div class="hphone">
+          <div class="hphone-notch"></div>
+          <img src="1.jpeg" alt="Zenova App" onerror="this.src='';this.parentElement.style.height='460px';this.parentElement.style.background='linear-gradient(145deg,#eef4ff,#dde8ff)'">
+        </div>
+        <div class="fcard fcard-a">
+          <div class="fc-ico" style="background:#eff6ff;color:#2563eb"><i class="fas fa-brain"></i></div>
+          <div class="fc-lbl">Focus Score</div>
+          <div class="fc-val">94%</div>
+          <div class="fc-sub">Best session today</div>
+        </div>
+        <div class="fcard fcard-b">
+          <div class="fc-ico" style="background:#f0fdf9;color:#059669"><i class="fas fa-fire"></i></div>
+          <div class="fc-lbl">Streak</div>
+          <div class="fc-val">12 Days 🔥</div>
+          <div class="fc-sub">Keep it going!</div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-item"><i class="fas fa-shield-alt"></i> Safe &amp; Secure</div>
-  <div class="trust-item"><i class="fas fa-mobile-alt"></i> Android Ready</div>
-  <div class="trust-item"><i class="fas fa-bolt"></i> Fast &amp; Lightweight</div>
-  <div class="trust-item"><i class="fas fa-graduation-cap"></i> Built for Students</div>
-  <div class="trust-item"><i class="fas fa-heart"></i> Free to Use</div>
-</div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="about-wrap">
-    <div>
-      <div class="eyebrow">About Zenova</div>
-      <h2 class="heading">Built for Students,<br>Powered by Purpose</h2>
-      <div class="about-quote">
-        <p>"Our mission at Zenova is to build simple and powerful tools that help students stay focused, organized, and successful in their learning journey."</p>
-      </div>
-      <p class="about-body">Zenova was born from a simple idea: students deserve better tools. We noticed that students were drowning in distractions, struggling with time management, and lacking the right digital resources to reach their potential. So we built Zenova — a suite of apps designed from the ground up for the modern learner.<br><br>We believe that when students have the right tools, there is no limit to what they can achieve.</p>
+<!-- FEATURES -->
+<section id="features" class="pad">
+  <div class="sc reveal">
+    <div class="stag"><i class="fas fa-star"></i> Features</div>
+    <h2 class="sh2">Everything You Need<br>to Study at Your Best</h2>
+    <p class="sbody">Zenova combines learning science with powerful tools — so you focus deeper, retain more, and grow faster than ever before.</p>
+  </div>
+  <div class="feat-grid">
+    <div class="feat reveal d1">
+      <div class="feat-ico" style="color:#2563eb"><i class="fas fa-brain"></i></div>
+      <h3>🧠 Focus Mode</h3>
+      <p>Enter a distraction-free zone powered by smart timers and ambient audio. Your brain stays locked in, your productivity skyrockets.</p>
+      <span class="feat-pill">Core Feature</span>
     </div>
-    <div class="values">
-      <div class="value-row"><div class="val-icon"><i class="fas fa-bullseye"></i></div><div class="val-text"><h4>Student-First Design</h4><p>Every decision we make is guided by what students actually need.</p></div></div>
-      <div class="value-row"><div class="val-icon"><i class="fas fa-feather-alt"></i></div><div class="val-text"><h4>Simple Yet Powerful</h4><p>Clean interfaces anyone can pick up in seconds — no tutorials, just results.</p></div></div>
-      <div class="value-row"><div class="val-icon"><i class="fas fa-globe-africa"></i></div><div class="val-text"><h4>Global Reach</h4><p>Tools for students everywhere, regardless of country or device.</p></div></div>
-      <div class="value-row"><div class="val-icon"><i class="fas fa-chart-line"></i></div><div class="val-text"><h4>Always Improving</h4><p>Zenova gets better with every release based on student feedback.</p></div></div>
+    <div class="feat reveal d2">
+      <div class="feat-ico" style="color:#d97706"><i class="fas fa-book-open"></i></div>
+      <h3>📚 Study Challenges</h3>
+      <p>Turn learning into an adventure. Daily and weekly challenges make studying addictive, rewarding, and impossible to skip.</p>
+      <span class="feat-pill">Fan Favourite</span>
+    </div>
+    <div class="feat reveal d3">
+      <div class="feat-ico" style="color:#059669"><i class="fas fa-chart-line"></i></div>
+      <h3>📊 Progress Tracking</h3>
+      <p>Visual dashboards and streak counters show exactly how far you've come. Watch your discipline become data you're proud of.</p>
+      <span class="feat-pill">Analytics</span>
+    </div>
+    <div class="feat reveal d4">
+      <div class="feat-ico" style="color:#7c3aed"><i class="fas fa-headphones"></i></div>
+      <h3>🎧 Audio Learning</h3>
+      <p>Listen your way to mastery. Zenova's audio mode lets you absorb content while walking, commuting, or winding down.</p>
+      <span class="feat-pill">Immersive</span>
+    </div>
+    <div class="feat reveal d5">
+      <div class="feat-ico" style="color:#db2777"><i class="fas fa-bolt"></i></div>
+      <h3>⚡ Speed Learning Tools</h3>
+      <p>Flashcards, spaced repetition, and rapid recall exercises train your brain to absorb information 3× faster without burnout.</p>
+      <span class="feat-pill">AI-Powered</span>
+    </div>
+    <div class="feat reveal d1">
+      <div class="feat-ico" style="color:#d97706"><i class="fas fa-trophy"></i></div>
+      <h3>🏆 Leaderboards</h3>
+      <p>Compete with top learners worldwide. Earn badges, climb the ranks, and prove you're built different from everyone else.</p>
+      <span class="feat-pill">Coming Soon</span>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- VIDEO DEMO -->
+<section id="demo" class="pad">
+  <div class="demo-glow1"></div>
+  <div class="demo-glow2"></div>
+  <div class="demo-inner">
+    <div class="reveal">
+      <div class="stag"><i class="fas fa-play-circle"></i> App Demo</div>
+      <h2 class="sh2">Watch Zenova<br>in Action</h2>
+      <p class="sbody">See the real app — live on a phone. No fluff, no fake screenshots.</p>
+    </div>
 
-<!-- PRODUCTS -->
-<section id="products">
-  <div class="products-bg"></div>
-  <div class="prod-hdr">
-    <div class="eyebrow-w">Our Products</div>
-    <h2 class="heading-w">Two Apps. One Goal.</h2>
-    <p>Each Zenova app targets a real problem students face and solves it with elegant, focused design.</p>
+    <div class="demo-stage reveal d1">
+
+      <!-- Phone mockup with video inside -->
+      <div class="phone-frame-wrap">
+        <div class="phone-frame">
+          <div class="phone-screen">
+            <!-- Notch -->
+            <div class="phone-notch">
+              <div class="notch-speaker"></div>
+              <div class="notch-camera"></div>
+            </div>
+            <!-- Status bar -->
+            <div class="phone-status">
+              <span class="ps-time">9:41</span>
+              <div class="ps-icons">
+                <i class="fas fa-signal"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-battery-three-quarters"></i>
+              </div>
+            </div>
+            <!-- Video -->
+            <video id="demoVideo" preload="metadata" playsinline class="phone-video">
+              <source src="1.mp4" type="video/mp4">
+            </video>
+            <!-- Play overlay -->
+            <div class="phone-overlay" id="vidOverlay" onclick="playDemo()">
+              <div class="phone-play"><i class="fas fa-play"></i></div>
+            </div>
+            <!-- Shine -->
+            <div class="phone-shine"></div>
+            <!-- Home bar -->
+            <div class="phone-home"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Side content -->
+      <div class="demo-side reveal d2">
+        <h3>Real App.<br>Real Results.<br>Real You.</h3>
+        <p>This is the actual Zenova experience — the same screens, features, and flow you'll get when you join. Watch it like you're holding it in your hands.</p>
+        <div class="demo-points">
+          <div class="dp">
+            <div class="dp-ico" style="background:rgba(59,130,246,.15);color:#60a5fa"><i class="fas fa-brain"></i></div>
+            <span><strong>Focus Mode</strong> — distraction-free study sessions</span>
+          </div>
+          <div class="dp">
+            <div class="dp-ico" style="background:rgba(16,185,129,.15);color:#34d399"><i class="fas fa-chart-line"></i></div>
+            <span><strong>Progress dashboard</strong> — streaks, scores & stats</span>
+          </div>
+          <div class="dp">
+            <div class="dp-ico" style="background:rgba(245,158,11,.15);color:#fbbf24"><i class="fas fa-trophy"></i></div>
+            <span><strong>Challenges</strong> — turn studying into a game</span>
+          </div>
+          <div class="dp">
+            <div class="dp-ico" style="background:rgba(139,92,246,.15);color:#a78bfa"><i class="fas fa-headphones"></i></div>
+            <span><strong>Audio learning</strong> — study anywhere, anytime</span>
+          </div>
+        </div>
+        <a href="#waitlist" class="btn-white" style="font-size:.84rem;padding:13px 26px"><i class="fas fa-bolt"></i> Get Early Access</a>
+      </div>
+
+    </div>
+
+    <div class="demo-tags reveal d3">
+      <span class="dtag"><i class="fas fa-mobile-alt"></i> Real app footage</span>
+      <span class="dtag"><i class="fas fa-clock"></i> Under 2 minutes</span>
+      <span class="dtag"><i class="fas fa-check-circle"></i> No signup to watch</span>
+      <span class="dtag"><i class="fas fa-bolt"></i> Live beta build</span>
+    </div>
   </div>
-  <div class="prod-grid">
-    <div class="prod-card hl">
-      <div class="pnum">Product 01 — Study Platform</div>
-      <div class="p-icon"><img src="main.jpeg" alt="Zenova"></div>
-      <h3>Zenova</h3>
-      <span class="ptag ts">Study Platform</span>
-      <p class="pdesc">A powerful study platform designed to help students learn smarter with tools, resources, and educational content that adapts to your needs.</p>
-      <ul class="pfeats">
-        <li><i class="fas fa-check-circle"></i> Curated educational resources in one place</li>
-        <li><i class="fas fa-check-circle"></i> Study tools that boost retention</li>
-        <li><i class="fas fa-check-circle"></i> Distraction-free learning environment</li>
-        <li><i class="fas fa-check-circle"></i> Lightweight Android app</li>
-      </ul>
-      <div class="countdown" id="box1">
-        <div class="cd-head">🚀 Launching In</div>
-        <div class="cd-row">
-          <div class="cd-cell"><span class="cd-n" id="t1d">00</span><span class="cd-l">Days</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t1h">00</span><span class="cd-l">Hrs</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t1m">00</span><span class="cd-l">Min</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t1s">00</span><span class="cd-l">Sec</span></div>
-        </div>
-        <div class="cd-date">Available March 28, 2026</div>
+</section>
+
+<!-- APP PREVIEW -->
+<section id="preview" class="pad">
+  <div class="prev-wrap">
+    <div class="phones-row reveal">
+      <div class="phone-m pm-side">
+        <img src="2.jpeg" alt="Zenova Screen 2" onerror="this.src='';this.parentElement.style.height='310px'">
       </div>
-      <div class="btn-soon" id="p1soon"><i class="fas fa-hourglass-half"></i>&nbsp; Coming Soon — Mar 28, 2026</div>
-      <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-download" id="p1live" style="display:none"><i class="fas fa-download"></i>&nbsp; Download Zenova Study — Free</a>
-    </div>
-    <div class="prod-card">
-      <div class="pnum">Product 02 — Productivity Tool</div>
-      <div class="p-icon"><img src="same.jpg" alt="Zenova Focus"></div>
-      <h3>Zenova Focus</h3>
-      <span class="ptag tf">Productivity Tool</span>
-      <p class="pdesc">A productivity tool that helps you plan your day, schedule activities, track exercises, and improve daily habits — one session at a time.</p>
-      <ul class="pfeats">
-        <li><i class="fas fa-check-circle"></i> Daily planner and activity scheduler</li>
-        <li><i class="fas fa-check-circle"></i> Habit tracker built for students</li>
-        <li><i class="fas fa-check-circle"></i> Focus timer with session tracking</li>
-        <li><i class="fas fa-check-circle"></i> Exercise &amp; wellness reminders</li>
-      </ul>
-      <div class="countdown" id="box2">
-        <div class="cd-head">🚀 Launching In</div>
-        <div class="cd-row">
-          <div class="cd-cell"><span class="cd-n" id="t2d">00</span><span class="cd-l">Days</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t2h">00</span><span class="cd-l">Hrs</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t2m">00</span><span class="cd-l">Min</span></div>
-          <div class="cd-cell"><span class="cd-n" id="t2s">00</span><span class="cd-l">Sec</span></div>
-        </div>
-        <div class="cd-date">Available April 28, 2026</div>
+      <div class="phone-m pm-main">
+        <img src="3.jpeg" alt="Zenova Screen 3" onerror="this.src='';this.parentElement.style.height='370px'">
       </div>
-      <div class="btn-soon" id="p2soon"><i class="fas fa-hourglass-half"></i>&nbsp; Coming Soon — Apr 28, 2026</div>
-      <a href="https://apk.e-droid.net/apk/app3960445-n0rd4w.apk?v=1" class="btn-download" id="p2live" style="display:none"><i class="fas fa-download"></i>&nbsp; Download Zenova Focus — Free</a>
+      <div class="phone-m pm-side right">
+        <img src="4.jpeg" alt="Zenova Screen 4" onerror="this.src='';this.parentElement.style.height='310px'">
+      </div>
     </div>
+    <div class="prev-content reveal d2">
+      <div class="stag"><i class="fas fa-mobile-alt"></i> App Preview</div>
+      <h2 class="sh2">See Zenova<br>In Action</h2>
+      <p class="sbody">Every screen is crafted to keep you focused, motivated, and in flow. Real tools. Real results.</p>
+      <div class="check-list">
+        <div class="ci"><div class="ci-chk"><i class="fas fa-check"></i></div><span><strong>Clean, distraction-free</strong> interface built for deep focus</span></div>
+        <div class="ci"><div class="ci-chk"><i class="fas fa-check"></i></div><span><strong>Personalized dashboards</strong> showing your real progress</span></div>
+        <div class="ci"><div class="ci-chk"><i class="fas fa-check"></i></div><span><strong>Gamified challenges</strong> that make studying feel like a game</span></div>
+        <div class="ci"><div class="ci-chk"><i class="fas fa-check"></i></div><span><strong>Audio mode</strong> for learning on the go, anytime</span></div>
+        <div class="ci"><div class="ci-chk"><i class="fas fa-check"></i></div><span><strong>Daily streaks & rewards</strong> to keep you consistent</span></div>
+      </div>
+      <div class="prev-btns">
+        <a href="#waitlist" class="btn-navy"><i class="fas fa-download"></i> Get Early Access</a>
+        <a href="5.jpeg" class="btn-navy-out" target="_blank"><i class="fas fa-images"></i> More Screenshots</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CHALLENGES -->
+<section id="challenges" class="pad">
+  <div class="sc reveal">
+    <div class="stag"><i class="fas fa-gamepad"></i> Challenges</div>
+    <h2 class="sh2">Study Like It's a Game.<br>Win Like It's Real Life.</h2>
+    <p class="sbody">Zenova Challenges are designed to push your limits, build discipline, and make consistency exciting — not exhausting.</p>
+  </div>
+  <div class="chal-grid">
+    <div class="chal reveal d1" style="--cbg:#eff6ff;--cc:#2563eb;--cb:#dbeafe;--bcolor:#2563eb">
+      <div class="chal-badge"><i class="fas fa-fire"></i> 7-Day</div>
+      <h3>7-Day Focus Challenge</h3>
+      <p>Study 2 focused hours every day for 7 days straight. No excuses. Build the habit that changes everything.</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 7 days · 2h/day</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="68"></div></div><div class="chal-lbl"><span>68% on track</span><span>Active</span></div></div>
+    </div>
+    <div class="chal reveal d2" style="--cbg:#fdf2f8;--cc:#db2777;--cb:#fbcfe8;--bcolor:#db2777">
+      <div class="chal-badge"><i class="fas fa-ban"></i> No Distraction</div>
+      <h3>No Distraction Challenge</h3>
+      <p>Phone down. Social media closed. 3 hours of pure focus a day for 5 days — can you hold out?</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 5 days · 3h/day</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="52"></div></div><div class="chal-lbl"><span>52% on track</span><span>Active</span></div></div>
+    </div>
+    <div class="chal reveal d3" style="--cbg:#fffbeb;--cc:#d97706;--cb:#fde68a;--bcolor:#f59e0b">
+      <div class="chal-badge"><i class="fas fa-bolt"></i> Speed Runner</div>
+      <h3>Speed Learning Sprint</h3>
+      <p>Complete 10 flashcard sets in under 30 minutes each day. Train your brain to absorb at record speed.</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 3 days · 30min/day</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="81"></div></div><div class="chal-lbl"><span>81% on track</span><span>Popular 🔥</span></div></div>
+    </div>
+    <div class="chal reveal d4" style="--cbg:#f0fdf9;--cc:#059669;--cb:#a7f3d0;--bcolor:#10b981">
+      <div class="chal-badge"><i class="fas fa-headphones"></i> Audio Daily</div>
+      <h3>30-Min Audio Daily</h3>
+      <p>Learn something new every day by listening for just 30 minutes. Perfect for commuters and busy students.</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 14 days · 30min/day</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="45"></div></div><div class="chal-lbl"><span>45% on track</span><span>Ongoing</span></div></div>
+    </div>
+    <div class="chal reveal d5" style="--cbg:#f5f3ff;--cc:#7c3aed;--cb:#ddd6fe;--bcolor:#8b5cf6">
+      <div class="chal-badge"><i class="fas fa-moon"></i> Night Owl</div>
+      <h3>Late Night Study Challenge</h3>
+      <p>Study 1 hour after 9PM every night for a week. Build the quiet-time habit top performers swear by.</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 7 days · 1h/night</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="73"></div></div><div class="chal-lbl"><span>73% on track</span><span>Active</span></div></div>
+    </div>
+    <div class="chal reveal d1" style="--cbg:#eff6ff;--cc:#1d4ed8;--cb:#bfdbfe;--bcolor:linear-gradient(90deg,#2563eb,#7c3aed)">
+      <div class="chal-badge"><i class="fas fa-star"></i> Ultimate</div>
+      <h3>The 21-Day Reset</h3>
+      <p>21 days. Focus. Audio. Challenges. All of it. This separates serious learners from everyone else.</p>
+      <div class="chal-meta"><span class="chal-dur"><i class="far fa-clock"></i> 21 days · All-in</span><a href="#waitlist" class="chal-join">Join</a></div>
+      <div class="chal-prog"><div class="chal-bg"><div class="chal-fill" data-w="29"></div></div><div class="chal-lbl"><span>29% brave enough</span><span>Hard Mode</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG / CONTENT -->
+<section id="content" class="pad">
+  <div class="sc reveal">
+    <div class="stag"><i class="fas fa-newspaper"></i> Zenova Blog</div>
+    <h2 class="sh2">Study Smarter.<br>Stay Inspired.</h2>
+    <p class="sbody">Tips, strategies, and motivation from the Zenova team — because great learning starts with great knowledge.</p>
+  </div>
+  <div class="cont-grid">
+    <div class="art reveal d1">
+      <div class="art-img tall">🧠<span class="art-cat">Study Tips</span></div>
+      <div class="art-body">
+        <h4>The 5 Study Habits That Actually Work (Backed by Science)</h4>
+        <p>Stop wasting hours studying the wrong way. These five evidence-based techniques will transform how you retain information permanently.</p>
+        <div class="art-foot"><a href="#waitlist" class="art-read">Read Article →</a><span class="art-time">6 min read</span></div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="art reveal d2">
+        <div class="art-img" style="background:linear-gradient(135deg,#1e3060,#152347)">⚡<span class="art-cat">Motivation</span></div>
+        <div class="art-body">
+          <h4>Why Consistency Beats Intensity Every Single Time</h4>
+          <p>One focused hour daily beats 7-hour cramming sessions. Here's the science behind it and how to build the habit.</p>
+          <div class="art-foot"><a href="#waitlist" class="art-read">Read Article →</a><span class="art-time">4 min read</span></div>
+        </div>
+      </div>
+      <div class="art reveal d3">
+        <div class="art-img" style="background:linear-gradient(135deg,#1a2a5e,#0d1b3e)">🎧<span class="art-cat">Mini Guide</span></div>
+        <div class="art-body">
+          <h4>How to Use Audio Learning to Study While Doing Anything</h4>
+          <p>Cooking, commuting, working out — your downtime is your most powerful learning window.</p>
+          <div class="art-foot"><a href="#waitlist" class="art-read">Read Article →</a><span class="art-time">3 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:36px" class="reveal">
+    <a href="#waitlist" class="btn-navy-out"><i class="fas fa-newspaper"></i> More Articles Coming Soon</a>
   </div>
 </section>
 
 <!-- HOW IT WORKS -->
-<section id="how">
-  <div class="how-hdr">
-    <div class="eyebrow" style="justify-content:center">How It Works</div>
-    <h2 class="heading" style="text-align:center">Get Started in Minutes</h2>
-    <p>Four simple steps to transform the way you study.</p>
+<section id="how" class="pad">
+  <div class="sc reveal">
+    <div class="stag"><i class="fas fa-route"></i> How It Works</div>
+    <h2 class="sh2">From Sign Up to<br>Levelling Up</h2>
+    <p class="sbody">Getting started with Zenova takes 60 seconds. What you build after that lasts a lifetime.</p>
   </div>
-  <div class="steps">
-    <div class="step"><div class="step-n">1</div><h4>Choose Your App</h4><p>Pick the Zenova app that fits your current needs — study platform or productivity tool.</p><i class="fas fa-chevron-right step-arr"></i></div>
-    <div class="step"><div class="step-n">2</div><h4>Download for Free</h4><p>Tap the download button and install the APK on your Android device. Completely free.</p><i class="fas fa-chevron-right step-arr"></i></div>
-    <div class="step"><div class="step-n">3</div><h4>Set Up Your Profile</h4><p>Personalize the app for your study goals, schedule, and habits in seconds.</p><i class="fas fa-chevron-right step-arr"></i></div>
-    <div class="step"><div class="step-n">4</div><h4>Start Learning</h4><p>Dive in and experience what focused, organized studying actually feels like.</p></div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- VISION -->
-<section id="vision">
-  <div class="vision-wrap">
-    <div>
-      <div class="eyebrow">Future Vision</div>
-      <h2 class="heading">We're Just Getting<br>Started</h2>
-      <p class="vbody">Zenova will continue building tools that help students around the world become more productive and successful. Our roadmap is full of exciting new ideas — each one aimed at making learning more accessible and enjoyable.</p>
-      <p class="vbody">We envision a future where every student has access to world-class digital learning tools. That future starts now.</p>
-      <div class="roadmap">
-        <div class="rm-item"><div class="rm-dot rm-on"></div><span>Zenova App Launch</span><span class="rm-date">Mar 28, 2026</span></div>
-        <div class="rm-item"><div class="rm-dot rm-on"></div><span>Zenova Focus Launch</span><span class="rm-date">Apr 28, 2026</span></div>
-        <div class="rm-item"><div class="rm-dot rm-off"></div><span>Community Features</span><span class="rm-date">Q3 2026</span></div>
-        <div class="rm-item"><div class="rm-dot rm-off"></div><span>iOS Version</span><span class="rm-date">Q4 2026</span></div>
-        <div class="rm-item"><div class="rm-dot rm-off"></div><span>Zenova Web Platform</span><span class="rm-date">2027</span></div>
+  <div class="how-wrap">
+    <div class="how-steps reveal">
+      <div class="hw"><div class="hw-num">01</div><div class="hw-con"><h4>Join the Waitlist</h4><p>Drop your name and email below. You'll be among the first to access Zenova when we launch — no spam, ever.</p></div></div>
+      <div class="hw"><div class="hw-num">02</div><div class="hw-con"><h4>Set Your Study Goals</h4><p>Tell Zenova what you want to learn, how much time you have, and which style works best for you.</p></div></div>
+      <div class="hw"><div class="hw-num">03</div><div class="hw-con"><h4>Pick a Challenge</h4><p>Choose from Focus, Speed, Audio, or No-Distraction challenges — each one builds a lasting habit.</p></div></div>
+      <div class="hw"><div class="hw-num">04</div><div class="hw-con"><h4>Track Your Progress</h4><p>Watch your streaks grow, your scores climb, and your confidence soar. Progress made visible.</p></div></div>
+      <div class="hw"><div class="hw-num">05</div><div class="hw-con"><h4>Share & Compete</h4><p>Challenge friends, climb leaderboards, and share your wins. Learning is better when others see your growth.</p></div></div>
+    </div>
+    <div class="how-visual reveal d2">
+      <div class="how-phone-inner">
+        <img src="5.jpeg" alt="Zenova Progress" onerror="this.src='';this.parentElement.style.height='360px'">
       </div>
     </div>
-    <div class="v-grid">
-      <div class="vc span2"><div class="icon">🌍</div><h4>Global Student Impact</h4><p>Our apps are built for students everywhere — any country, any level, on affordable Android devices.</p></div>
-      <div class="vc"><div class="icon">📱</div><h4>More Apps Coming</h4><p>Two apps today. Many more tomorrow.</p></div>
-      <div class="vc"><div class="icon">🤝</div><h4>Community Driven</h4><p>Student feedback shapes every feature.</p></div>
-    </div>
   </div>
 </section>
 
-<!-- VIDEO PREVIEW -->
-<section id="preview">
-  <div class="preview-bg"></div>
-  <div class="preview-inner">
-    <div class="preview-hdr">
-      <div class="eyebrow-w" style="justify-content:center">App Preview</div>
-      <h2>See Zenova in Action</h2>
-      <p>Get an exclusive first look at what Zenova can do for your studies — before it launches on March 28, 2026.</p>
+<!-- PRODUCTS -->
+<section id="products" class="pad">
+  <div class="sc reveal">
+    <div class="stag"><i class="fas fa-layer-group"></i> Our Products</div>
+    <h2 class="sh2">The Zenova Suite</h2>
+    <p class="sbody">We're building a full ecosystem of learning tools. Here's what's coming — and when.</p>
+  </div>
+  <div class="prod-grid">
+    <div class="prod reveal d1">
+      <div class="prod-ico">📱</div>
+      <h3>Zenova App</h3>
+      <span class="prod-lbl">Phase 1 — Launching Soon</span>
+      <p>The flagship mobile learning app with Focus Mode, Challenges, Progress Tracking, and Audio Learning — all in one place.</p>
+      <div class="prod-clock" id="box1">
+        <div class="pc-lbl">Launching in</div>
+        <div class="pc-row">
+          <div class="pc-seg"><span id="t1d">--</span><small>days</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t1h">--</span><small>hrs</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t1m">--</span><small>min</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t1s">--</span><small>sec</small></div>
+        </div>
+      </div>
+      <div class="prod-live" id="p1live"><div class="ldot"></div> Live Now!</div>
     </div>
-    <div class="video-shell">
-      <video controls preload="metadata" style="max-height:520px;object-fit:contain;background:#000">
-        <source src="promo.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <div class="vid-badge"><span class="vid-dot"></span> Coming Mar 28</div>
+    <div class="prod reveal d2">
+      <div class="prod-ico">🌐</div>
+      <h3>Zenova Web Platform</h3>
+      <span class="prod-lbl">Phase 2 — Coming Later</span>
+      <p>A full browser-based study platform with advanced analytics, collaborative study rooms, and teacher tools.</p>
+      <div class="prod-clock" id="box2">
+        <div class="pc-lbl">Estimated launch</div>
+        <div class="pc-row">
+          <div class="pc-seg"><span id="t2d">--</span><small>days</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t2h">--</span><small>hrs</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t2m">--</span><small>min</small></div>
+          <div class="pc-sep">:</div>
+          <div class="pc-seg"><span id="t2s">--</span><small>sec</small></div>
+        </div>
+      </div>
+      <div class="prod-live" id="p2live"><div class="ldot"></div> Live Now!</div>
+    </div>
+    <div class="prod reveal d3">
+      <div class="prod-ico">🤖</div>
+      <h3>Zenova AI Tutor</h3>
+      <span class="prod-lbl">Phase 3 — Future</span>
+      <p>Your 24/7 AI study companion that answers questions, explains concepts, quizzes you, and adapts to your learning style.</p>
+      <div class="prod-future"><i class="fas fa-hourglass-half" style="color:var(--blue2)"></i> In Development</div>
     </div>
   </div>
 </section>
 
 <!-- WAITLIST -->
-<section id="waitlist">
-  <div class="wl-center">
-    <div class="eyebrow" style="justify-content:center">Early Access</div>
-    <h2>Join the Zenova<br>Early Access List</h2>
-    <p class="wl-sub">Be among the first to get Zenova when it drops on <strong>March 28, 2026</strong>. Sign up and we'll email you the moment it goes live.</p>
-    <div class="goal-wrap">
+<section id="waitlist" class="pad">
+  <div class="wl-inner">
+    <div class="reveal">
+      <div class="stag"><i class="fas fa-envelope"></i> Waitlist</div>
+      <h2 class="sh2">Be First. Get Access.<br>Change How You Learn.</h2>
+      <p class="sbody">Join the Zenova early access waitlist. We're only accepting the first 100 serious learners — don't miss your spot.</p>
+    </div>
+    <form class="wl-form reveal d1" id="wlForm">
+      <input class="wl-inp" type="text" id="wlName" placeholder="Your full name" required>
+      <input class="wl-inp" type="email" id="wlEmail" placeholder="Your email address" required>
+      <button class="wl-submit" type="submit"><i class="fas fa-bolt"></i> &nbsp;Claim My Spot</button>
+    </form>
+    <div class="goal-wrap reveal d2">
+      <div class="goal-labels">
+        <span><strong id="signupCount2" style="color:rgba(255,255,255,.75)">12</strong> / 100 spots claimed</span>
+        <span>Early Access Only</span>
+      </div>
       <div class="goal-track"><div class="goal-fill" id="goalFill"></div></div>
-      <div class="goal-note">Goal: <b><span id="signupCount">—</span> / 100</b> early signups — Help us reach 100 before launch!</div>
-    </div>
-    <div class="perks">
-      <div class="perk"><div class="pi">🚀</div><h4>First to Download</h4><p>Get notified the instant the app goes live before anyone else.</p></div>
-      <div class="perk"><div class="pi">🎁</div><h4>Exclusive Updates</h4><p>Behind-the-scenes sneak peeks from the Zenova team.</p></div>
-      <div class="perk"><div class="pi">💙</div><h4>Support the Mission</h4><p>Every signup shows us students believe in what we're building.</p></div>
-    </div>
-    <div class="wl-card">
-      <h3>✍️ Reserve Your Spot — It's 100% Free</h3>
-      <div id="wlFormWrap">
-        <form id="wlForm">
-          <div class="form-row">
-            <input type="text" id="wlName" placeholder="Your Full Name" required>
-            <input type="email" id="wlEmail" placeholder="Your Email Address" required>
-          </div>
-          <button type="submit" class="btn-join"><i class="fas fa-paper-plane"></i> Join the Waitlist — Free</button>
-        </form>
-        <p class="wl-note"><i class="fas fa-lock"></i> No spam, ever. We only send you launch updates.</p>
-      </div>
-      <div class="wl-success" id="wlSuccess">
-        <div class="sc">🎉</div>
-        <h3>You're on the list!</h3>
-        <p>Thanks for signing up! We'll reach out at <strong id="confirmedEmail"></strong> the moment Zenova launches.</p>
-      </div>
+      <div class="goal-note">Only <strong id="spotsLeft">88</strong> spots remaining</div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrap">
-    <div>
-      <div class="eyebrow">Connect With Us</div>
-      <h2 class="heading">Stay in the<br>Zenova Loop</h2>
-      <p class="cbody">Follow Zenova on social media to stay updated on new releases, tips, behind-the-scenes content, and everything we're building. We love hearing from students!</p>
-      <div class="email-block">
-        <div class="email-icon"><i class="fas fa-envelope"></i></div>
-        <span>zenovaofficial188@gmail.com</span>
-      </div>
+<!-- SOCIAL -->
+<section id="social" class="pad">
+  <div class="soc-wrap">
+    <div class="reveal">
+      <div class="stag"><i class="fas fa-users"></i> Community</div>
+      <h2 class="sh2" style="font-size:clamp(1.7rem,2.5vw,2.3rem)">Stay in the<br>Zenova Loop</h2>
+      <p class="sbody" style="max-width:380px">Follow us for daily study tips, behind-the-scenes content, app updates, and motivation that actually hits.</p>
+      <div class="email-row"><i class="fas fa-envelope"></i><a href="/cdn-cgi/l/email-protection#f68c93989980979990909f959f979ac7ceceb6919b979f9ad895999b"><span class="__cf_email__" data-cfemail="6b110e05041d0a040d0d0208020a075a53532b0c060a020745080406">[email&#160;protected]</span></a></div>
     </div>
-    <div class="social-list">
-      <a href="https://www.youtube.com/@Zenovamedia188" target="_blank" rel="noopener" class="social-link"><div class="s-icon s-yt"><i class="fab fa-youtube"></i></div><div class="s-text"><strong>YouTube</strong><span>@Zenovaofficial188 — Tutorials &amp; updates</span></div><i class="fas fa-arrow-right s-arr"></i></a>
-      <a href="https://www.instagram.com/zenovamedia188/" target="_blank" rel="noopener" class="social-link"><div class="s-icon s-ig"><i class="fab fa-instagram"></i></div><div class="s-text"><strong>Instagram</strong><span>@zenovaofficial188 — Daily content</span></div><i class="fas fa-arrow-right s-arr"></i></a>
-      <a href="https://web.facebook.com/profile.php?id=61588573439813" target="_blank" rel="noopener" class="social-link"><div class="s-icon s-fb"><i class="fab fa-facebook-f"></i></div><div class="s-text"><strong>Facebook</strong><span>Zenova Official — Community &amp; news</span></div><i class="fas fa-arrow-right s-arr"></i></a>
-      <a href="https://www.tiktok.com/@zenovamedia188" target="_blank" rel="noopener" class="social-link"><div class="s-icon s-tt"><i class="fab fa-tiktok"></i></div><div class="s-text"><strong>TikTok</strong><span>@zenovaofficial188 — Short tips &amp; demos</span></div><i class="fas fa-arrow-right s-arr"></i></a>
-      <a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" rel="noopener" class="social-link"><div class="s-icon s-wa"><i class="fab fa-whatsapp"></i></div><div class="s-text"><strong>WhatsApp Channel</strong><span>Join the Zenova Community Channel</span></div><i class="fas fa-arrow-right s-arr"></i></a>
+    <div class="soc-list reveal d2">
+      <a href="https://www.youtube.com/@Zenovaofficial188" target="_blank" rel="noopener" class="soc-link">
+        <div class="si si-yt"><i class="fab fa-youtube"></i></div>
+        <div class="soc-text"><strong>YouTube</strong><span>@Zenovaofficial188 — Tutorials & updates</span></div>
+        <i class="fas fa-arrow-right soc-arr"></i>
+      </a>
+      <a href="https://instagram.com/zenovaofficial188" target="_blank" rel="noopener" class="soc-link">
+        <div class="si si-ig"><i class="fab fa-instagram"></i></div>
+        <div class="soc-text"><strong>Instagram</strong><span>@zenovaofficial188 — Daily content</span></div>
+        <i class="fas fa-arrow-right soc-arr"></i>
+      </a>
+      <a href="https://facebook.com/profile.php?id=61588573439813" target="_blank" rel="noopener" class="soc-link">
+        <div class="si si-fb"><i class="fab fa-facebook-f"></i></div>
+        <div class="soc-text"><strong>Facebook</strong><span>Zenova Official — Community & news</span></div>
+        <i class="fas fa-arrow-right soc-arr"></i>
+      </a>
+      <a href="https://tiktok.com/@zenovaofficial188" target="_blank" rel="noopener" class="soc-link">
+        <div class="si si-tt"><i class="fab fa-tiktok"></i></div>
+        <div class="soc-text"><strong>TikTok</strong><span>@zenovaofficial188 — Short tips & demos</span></div>
+        <i class="fas fa-arrow-right soc-arr"></i>
+      </a>
+      <a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" rel="noopener" class="soc-link">
+        <div class="si si-wa"><i class="fab fa-whatsapp"></i></div>
+        <div class="soc-text"><strong>WhatsApp Channel</strong><span>Join the Zenova Community</span></div>
+        <i class="fas fa-arrow-right soc-arr"></i>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <div class="ft-grid">
+  <div class="ft-top">
     <div>
-      <div class="ft-brand"><img src="logo.jpg" alt="Zenova"><span>Zenova</span></div>
-      <p class="ft-tagline">"Building tools for the future of learning."</p>
+      <div class="ft-brand">
+        <img src="logo.jpg" alt="Zenova" onerror="this.style.display='none'">
+        <span>Zenova</span>
+      </div>
+      <p class="ft-tag">"Building tools for the future of learning." — One focused student at a time.</p>
     </div>
     <div class="ft-col">
-      <h5>Navigation</h5>
+      <h5>Navigate</h5>
       <ul>
-        <li><a href="#home">Home</a></li><li><a href="#about">About</a></li>
-        <li><a href="#products">Products</a></li><li><a href="#how">How It Works</a></li>
-        <li><a href="#vision">Vision</a></li><li><a href="#preview">App Preview</a></li>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#preview">App Preview</a></li>
+        <li><a href="#challenges">Challenges</a></li>
+        <li><a href="#content">Blog</a></li>
+        <li><a href="#how">How It Works</a></li>
         <li><a href="#waitlist">Join Waitlist</a></li>
       </ul>
     </div>
     <div class="ft-col">
       <h5>Connect</h5>
       <ul>
-        <li><a href="https://www.youtube.com/@Zenovamedia188" target="_blank">YouTube</a></li>
-        <li><a href="https://www.instagram.com/zenovamedia188/" target="_blank">Instagram</a></li>
-        <li><a href="https://web.facebook.com/profile.php?id=61588573439813" target="_blank">Facebook</a></li>
-        <li><a href="https://www.tiktok.com/@zenovamedia188" target="_blank">TikTok</a></li>
-        <li><a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank">WhatsApp Channel</a></li>
-        <li><a href="mailto:zenovaofficial188@gmail.com">Email Us</a></li>
+        <li><a href="https://www.youtube.com/@Zenovaofficial188" target="_blank">YouTube</a></li>
+        <li><a href="https://instagram.com/zenovaofficial188" target="_blank">Instagram</a></li>
+        <li><a href="https://facebook.com/profile.php?id=61588573439813" target="_blank">Facebook</a></li>
+        <li><a href="https://tiktok.com/@zenovaofficial188" target="_blank">TikTok</a></li>
+        <li><a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank">WhatsApp</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#7208171c1d04131d14141b111b131e434a4a32151f131b1e5c111d1f">Email Us</a></li>
       </ul>
     </div>
   </div>
-  <div class="ft-bottom">
-    <div class="ft-copy">Zenova &copy; 2026 — All rights reserved.</div>
-    <div class="ft-socials">
-      <a href="https://www.youtube.com/@Zenovamedia188" target="_blank" class="ft-soc" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/zenovamedia188/" target="_blank" class="ft-soc" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://web.facebook.com/profile.php?id=61588573439813" target="_blank" class="ft-soc" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://www.tiktok.com/@zenovamedia188" target="_blank" class="ft-soc" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" class="ft-soc" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <div class="ft-bot">
+    <div class="ft-copy">Zenova © 2026 — All rights reserved.</div>
+    <div class="ft-socs">
+      <a href="https://www.youtube.com/@Zenovaofficial188" target="_blank" class="ft-s"><i class="fab fa-youtube"></i></a>
+      <a href="https://instagram.com/zenovaofficial188" target="_blank" class="ft-s"><i class="fab fa-instagram"></i></a>
+      <a href="https://facebook.com/profile.php?id=61588573439813" target="_blank" class="ft-s"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://tiktok.com/@zenovaofficial188" target="_blank" class="ft-s"><i class="fab fa-tiktok"></i></a>
+      <a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" class="ft-s"><i class="fab fa-whatsapp"></i></a>
     </div>
   </div>
 </footer>
 
-<!-- ===== CORE SCRIPT: navbar, countdown, hamburger (plain — no defer) ===== -->
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
-  /* ---- Navbar scroll ---- */
-  var nav = document.getElementById('navbar');
-  window.addEventListener('scroll', function(){ nav.classList.toggle('scrolled', window.scrollY > 10); });
-
-  /* ---- Hamburger ---- */
-  document.getElementById('hamburger').addEventListener('click', function(){
-    document.getElementById('navLinks').classList.toggle('open');
-  });
-  document.querySelectorAll('#navLinks a').forEach(function(a){
-    a.addEventListener('click', function(){ document.getElementById('navLinks').classList.remove('open'); });
-  });
-
-  /* ---- Countdown timers ---- */
-  var L1 = new Date(2026, 2, 28, 0, 0, 0);  /* March 28 2026 */
-  var L2 = new Date(2026, 3, 28, 0, 0, 0);  /* April 28 2026 */
-
-  function pad(n){ var v = Math.max(0, Math.floor(n)); return v < 10 ? '0'+v : ''+v; }
-
-  function tick(date, dEl, hEl, mEl, sEl, boxEl, soonEl, liveEl){
-    var diff = date.getTime() - Date.now();
-    if(diff <= 0){
-      if(boxEl)  boxEl.style.display  = 'none';
-      if(soonEl) soonEl.style.display = 'none';
-      if(liveEl) liveEl.style.display = 'flex';
-      return;
-    }
-    if(dEl) dEl.textContent = pad(diff / 86400000);
-    if(hEl) hEl.textContent = pad((diff % 86400000) / 3600000);
-    if(mEl) mEl.textContent = pad((diff % 3600000)  / 60000);
-    if(sEl) sEl.textContent = pad((diff % 60000)    / 1000);
+  function playDemo(){
+    var v=document.getElementById('demoVideo');
+    var o=document.getElementById('vidOverlay');
+    if(v){v.play();if(o)o.classList.add('hidden');}
   }
+  var dv=document.getElementById('demoVideo');
+  if(dv){dv.addEventListener('ended',function(){var o=document.getElementById('vidOverlay');if(o)o.classList.remove('hidden');dv.currentTime=0;});}
+  // Also allow clicking anywhere on phone overlay
+  var po=document.getElementById('vidOverlay');
+  if(po){po.addEventListener('click',playDemo);}
 
-  function tickAll(){
-    tick(L1,
-      document.getElementById('t1d'), document.getElementById('t1h'),
-      document.getElementById('t1m'), document.getElementById('t1s'),
-      document.getElementById('box1'), document.getElementById('p1soon'), document.getElementById('p1live')
-    );
-    tick(L2,
-      document.getElementById('t2d'), document.getElementById('t2h'),
-      document.getElementById('t2m'), document.getElementById('t2s'),
-      document.getElementById('box2'), document.getElementById('p2soon'), document.getElementById('p2live')
-    );
+  var nav=document.getElementById('navbar');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>10);});
+  document.getElementById('hamburger').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open');});
+  document.querySelectorAll('#navLinks a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open');});});
+
+  var L1=new Date(2026,2,28,0,0,0),L2=new Date(2026,3,28,0,0,0);
+  function pad(n){var v=Math.max(0,Math.floor(n));return v<10?'0'+v:''+v;}
+  function tick(d,dE,hE,mE,sE,bx,lv){
+    var diff=d.getTime()-Date.now();
+    if(diff<=0){if(bx)bx.style.display='none';if(lv)lv.style.display='flex';return;}
+    if(dE)dE.textContent=pad(diff/86400000);
+    if(hE)hE.textContent=pad((diff%86400000)/3600000);
+    if(mE)mE.textContent=pad((diff%3600000)/60000);
+    if(sE)sE.textContent=pad((diff%60000)/1000);
   }
+  function ta(){
+    tick(L1,document.getElementById('t1d'),document.getElementById('t1h'),document.getElementById('t1m'),document.getElementById('t1s'),document.getElementById('box1'),document.getElementById('p1live'));
+    tick(L2,document.getElementById('t2d'),document.getElementById('t2h'),document.getElementById('t2m'),document.getElementById('t2s'),document.getElementById('box2'),document.getElementById('p2live'));
+  }
+  ta();setInterval(ta,1000);
 
-  tickAll();
-  setInterval(tickAll, 1000);
+  var io=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){x.target.classList.add('visible');io.unobserve(x.target);}});},{threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+  var bo=new IntersectionObserver(function(e){e.forEach(function(x){if(x.isIntersecting){var w=x.target.getAttribute('data-w');setTimeout(function(){x.target.style.width=w+'%';},150);bo.unobserve(x.target);}});},{threshold:0.4});
+  document.querySelectorAll('.chal-fill').forEach(function(b){bo.observe(b);});
+
+  document.getElementById('wlForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('wlName').value.trim();
+    var email=document.getElementById('wlEmail').value.trim();
+    if(!name||!email)return;
+    var btn=this.querySelector('.wl-submit');
+    btn.innerHTML='<i class="fas fa-check"></i> &nbsp;You\'re on the list!';
+    btn.style.background='#d1fae5';btn.style.color='#065f46';btn.disabled=true;
+    var s=encodeURIComponent('New Zenova Waitlist Signup!');
+    var b=encodeURIComponent('New signup!\n\nName: '+name+'\nEmail: '+email);
+    window.open('mailto:zenovaofficial188@gmail.com?subject='+s+'&body='+b,'_blank');
+  });
 })();
 </script>
 
-<!-- ===== FIREBASE: signup counter (module) ===== -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
-  import { getDatabase, ref, onValue, runTransaction } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
-
-  const firebaseConfig = {
-    apiKey:            "AIzaSyDk1avyIpsw4BBzj_8K6zqi85ONsZzb2uc",
-    authDomain:        "zenova-website.firebaseapp.com",
-    databaseURL:       "https://zenova-website-default-rtdb.firebaseio.com",
-    projectId:         "zenova-website",
-    storageBucket:     "zenova-website.firebasestorage.app",
-    messagingSenderId: "184082257519",
-    appId:             "1:184082257519:web:3ebd5ada34b315f82adf9a"
-  };
-
-  const GOAL = 100;
-  const BASE = 12;
-
-  const app      = initializeApp(firebaseConfig);
-  const db       = getDatabase(app);
-  const countRef = ref(db, 'waitlist/signupCount');
-
-  /* Render count + progress bar */
-  function renderCount(n){
-    n = Math.max(BASE, Math.min(n, GOAL));
-    var countEl = document.getElementById('signupCount');
-    var fillEl  = document.getElementById('goalFill');
-    if(countEl) countEl.textContent = n;
-    if(fillEl)  fillEl.style.width  = ((n / GOAL) * 100).toFixed(1) + '%';
-  }
-
-  /* Live-sync — all visitors see the same number in real time */
-  onValue(countRef, function(snapshot){
-    renderCount(snapshot.val() !== null ? snapshot.val() : BASE);
-  });
-
-  /* Waitlist form submit */
-  document.getElementById('wlForm').addEventListener('submit', async function(e){
-    e.preventDefault();
-    var name  = document.getElementById('wlName').value.trim();
-    var email = document.getElementById('wlEmail').value.trim();
-    if(!name || !email) return;
-
-    /* Atomically increment in Firebase */
-    await runTransaction(countRef, function(current){
-      return Math.min((current !== null ? current : BASE) + 1, GOAL);
-    });
-
-    /* Flash animation on the number */
-    var countEl = document.getElementById('signupCount');
-    if(countEl){
-      countEl.style.transition = 'transform .25s ease, color .25s ease';
-      countEl.style.transform  = 'scale(1.4)';
-      countEl.style.color      = '#2563eb';
-      setTimeout(function(){ countEl.style.transform='scale(1)'; countEl.style.color=''; }, 380);
-    }
-
-    /* Email notification */
-    var sub  = encodeURIComponent('New Zenova Waitlist Signup!');
-    var body = encodeURIComponent('New waitlist signup!\n\nName: '+name+'\nEmail: '+email);
-    window.open('mailto:zenovaofficial188@gmail.com?subject='+sub+'&body='+body, '_blank');
-
-    /* Show success screen */
-    document.getElementById('confirmedEmail').textContent = email;
-    document.getElementById('wlFormWrap').style.display   = 'none';
-    document.getElementById('wlSuccess').style.display    = 'block';
-  });
+import{initializeApp}from"https://www.gstatic.com/firebasejs/11.0.0/firebase-app.js";
+import{getDatabase,ref,onValue,runTransaction}from"https://www.gstatic.com/firebasejs/11.0.0/firebase-database.js";
+const cfg={apiKey:"AIzaSyDk1avyIpsw4BBzj_8K6zqi85ONsZzb2uc",authDomain:"zenova-website.firebaseapp.com",databaseURL:"https://zenova-website-default-rtdb.firebaseio.com",projectId:"zenova-website",storageBucket:"zenova-website.firebasestorage.app",messagingSenderId:"184082257519",appId:"1:184082257519:web:3ebd5ada34b315f82adf9a"};
+const GOAL=100,BASE=12;
+const db=getDatabase(initializeApp(cfg));
+const cRef=ref(db,'waitlist/signupCount');
+function rc(n){
+  n=Math.max(BASE,Math.min(n,GOAL));
+  ['signupCount','signupCount2'].forEach(id=>{var e=document.getElementById(id);if(e)e.textContent=n;});
+  var f=document.getElementById('goalFill');if(f)f.style.width=((n/GOAL)*100).toFixed(1)+'%';
+  var sl=document.getElementById('spotsLeft');if(sl)sl.textContent=Math.max(0,GOAL-n);
+}
+onValue(cRef,s=>rc(s.val()!==null?s.val():BASE));
+document.getElementById('wlForm').addEventListener('submit',async function(){
+  await runTransaction(cRef,c=>Math.min((c!==null?c:BASE)+1,GOAL));
+  var c=document.getElementById('signupCount');
+  if(c){c.style.transition='transform .25s,color .25s';c.style.transform='scale(1.4)';c.style.color='var(--blue2)';setTimeout(()=>{c.style.transform='scale(1)';c.style.color='';},380);}
+});
 </script>
 </body>
 </html>

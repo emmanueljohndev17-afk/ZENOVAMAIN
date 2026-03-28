@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zenova – Study Smarter, Win Bigger</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0d1b3e;
+    --navy-mid: #1a2f5e;
+    --navy-light: #2a4480;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --off-white: #f7f8fc;
+    --text: #0d1b3e;
+    --text-muted: #5a6a8a;
+    --border: rgba(13,27,62,0.12);
+    --bg: #ffffff;
+    --card-bg: #f7f8fc;
+    --shadow: 0 8px 32px rgba(13,27,62,0.12);
+    --shadow-lg: 0 20px 60px rgba(13,27,62,0.18);
+  }
+  [data-theme="dark"] {
+    --white: #0d1b3e;
+    --off-white: #111e3d;
+    --text: #e8eaf6;
+    --text-muted: #8a9bc4;
+    --border: rgba(255,255,255,0.1);
+    --bg: #0a1530;
+    --card-bg: #111e3d;
+    --shadow: 0 8px 32px rgba(0,0,0,0.4);
+    --shadow-lg: 0 20px 60px rgba(0,0,0,0.5);
+    --navy: #e8eaf6;
+    --navy-mid: #c9d0e8;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    transition: background 0.4s, color 0.4s;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--navy-light); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 5%;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: background 0.4s;
+  }
+  [data-theme="dark"] nav { background: rgba(10,21,48,0.92); }
+
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem; font-weight: 900;
+    color: var(--navy); text-decoration: none;
+    letter-spacing: -0.5px;
+    transition: color 0.4s;
+  }
+  [data-theme="dark"] .nav-logo { color: #e8eaf6; }
+
+  .nav-logo span { color: var(--gold); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
+  .nav-links a {
+    color: var(--text-muted); text-decoration: none; font-size: 0.9rem;
+    font-weight: 500; letter-spacing: 0.3px;
+    transition: color 0.25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-actions { display: flex; gap: 0.8rem; align-items: center; }
+
+  .btn-nav {
+    background: var(--navy); color: #fff;
+    padding: 0.55rem 1.3rem; border-radius: 50px;
+    font-size: 0.85rem; font-weight: 600; text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  [data-theme="dark"] .btn-nav { background: var(--gold); color: var(--navy); }
+  .btn-nav:hover { background: var(--navy-light); transform: translateY(-1px); }
+
+  .theme-toggle {
+    background: none; border: 2px solid var(--border);
+    border-radius: 50%; width: 38px; height: 38px;
+    cursor: pointer; font-size: 1rem; display: flex;
+    align-items: center; justify-content: center;
+    transition: border-color 0.25s, transform 0.2s;
+    color: var(--text);
+  }
+  .theme-toggle:hover { border-color: var(--gold); transform: rotate(15deg); }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all 0.3s; }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #0d1b3e 0%, #1a2f5e 50%, #0d1b3e 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 5% 4rem;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-particles {
+    position: absolute; inset: 0; overflow: hidden; pointer-events: none;
+  }
+  .particle {
+    position: absolute; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    animation: float 8s ease-in-out infinite;
+  }
+  .particle:nth-child(1) { width: 300px; height: 300px; top: -100px; right: -80px; animation-delay: 0s; }
+  .particle:nth-child(2) { width: 150px; height: 150px; top: 60%; left: -50px; animation-delay: 2s; }
+  .particle:nth-child(3) { width: 80px; height: 80px; top: 20%; left: 20%; animation-delay: 4s; }
+  .particle:nth-child(4) { width: 200px; height: 200px; bottom: -60px; right: 30%; animation-delay: 1s; }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-20px) scale(1.05); }
+  }
+
+  .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1200px; width: 100%; }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-badge {
+    display: inline-block; background: rgba(201,168,76,0.2);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold-light); padding: 0.35rem 1rem;
+    border-radius: 50px; font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 5vw, 4.2rem);
+    font-weight: 900; line-height: 1.1;
+    color: #ffffff; margin-bottom: 1.5rem;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+  .hero-title .accent { color: var(--gold); display: block; }
+
+  .hero-sub {
+    color: rgba(255,255,255,0.7); font-size: 1.05rem;
+    line-height: 1.7; max-width: 480px; margin-bottom: 2.5rem;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.3s ease both; }
+
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.95rem; text-decoration: none;
+    transition: transform 0.25s, box-shadow 0.25s;
+    box-shadow: 0 4px 20px rgba(201,168,76,0.4);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(201,168,76,0.5); }
+
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 2px solid rgba(255,255,255,0.4); color: #fff;
+    padding: 0.9rem 2rem; border-radius: 50px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    transition: border-color 0.25s, background 0.25s, transform 0.25s;
+    background: transparent;
+  }
+  .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+
+  /* Mockup phone */
+  .hero-visual { display: flex; justify-content: center; align-items: center; position: relative; z-index: 2; }
+
+  .phone-mockup {
+    width: 260px; background: #0a0f1e;
+    border-radius: 36px; padding: 12px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.1);
+    animation: fadeUp 0.8s 0.4s ease both, levitate 5s 1.4s ease-in-out infinite;
+  }
+  @keyframes levitate {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .phone-screen {
+    background: linear-gradient(160deg, #1a2f5e, #0d1b3e);
+    border-radius: 28px; padding: 1.5rem 1rem; min-height: 480px;
+    display: flex; flex-direction: column; gap: 0.8rem; overflow: hidden;
+  }
+
+  .phone-header {
+    text-align: center; padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .phone-header-title {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold); font-size: 1.1rem; font-weight: 700;
+  }
+  .phone-header-sub { color: rgba(255,255,255,0.5); font-size: 0.65rem; }
+
+  .phone-card {
+    background: rgba(255,255,255,0.06); border-radius: 12px;
+    padding: 0.6rem 0.8rem; border: 1px solid rgba(255,255,255,0.08);
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .phone-card-icon { font-size: 1.1rem; }
+  .phone-card-label { color: rgba(255,255,255,0.85); font-size: 0.7rem; font-weight: 500; }
+  .phone-card-sub { color: rgba(255,255,255,0.4); font-size: 0.6rem; }
+
+  .phone-progress {
+    background: rgba(255,255,255,0.06); border-radius: 10px;
+    padding: 0.6rem 0.8rem; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .progress-label { color: rgba(255,255,255,0.6); font-size: 0.62rem; margin-bottom: 0.4rem; }
+  .progress-bar { height: 5px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--gold); border-radius: 3px; }
+
+  .phone-quote {
+    background: rgba(201,168,76,0.15); border-radius: 10px;
+    padding: 0.6rem 0.8rem; border: 1px solid rgba(201,168,76,0.2);
+    color: var(--gold-light); font-size: 0.62rem; font-style: italic; line-height: 1.5;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── STATS BAR ── */
+  .stats-bar {
+    background: var(--navy);
+    padding: 2rem 5%;
+    display: flex; justify-content: center; gap: 4rem; flex-wrap: wrap;
+    transition: background 0.4s;
+  }
+  [data-theme="dark"] .stats-bar { background: #0a1530; border-top: 1px solid rgba(255,255,255,0.05); }
+
+  .stat-item { text-align: center; }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; font-weight: 900; color: var(--gold);
+  }
+  .stat-label { color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 500; margin-top: 0.2rem; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 5%; }
+  .section-tag {
+    display: inline-block; color: var(--gold);
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 900; line-height: 1.15;
+    color: var(--text); margin-bottom: 1rem;
+  }
+  .section-sub {
+    color: var(--text-muted); font-size: 1rem; line-height: 1.7;
+    max-width: 540px;
+  }
+  .section-header { margin-bottom: 3.5rem; }
+  .section-header.center { text-align: center; }
+  .section-header.center .section-sub { margin: 0 auto; }
+
+  /* ── FEATURES ── */
+  #features { background: var(--off-white); transition: background 0.4s; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 1.5rem; max-width: 1200px; margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--card-bg); border-radius: 20px;
+    padding: 2rem; border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    cursor: default; position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--navy-light));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .feature-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--gold); }
+  .feature-card:hover::before { opacity: 1; }
+
+  .feature-icon {
+    font-size: 2.2rem; margin-bottom: 1rem;
+    display: block;
+  }
+  .feature-title { font-weight: 700; font-size: 1.05rem; color: var(--text); margin-bottom: 0.5rem; }
+  .feature-desc { color: var(--text-muted); font-size: 0.88rem; line-height: 1.6; }
+
+  /* ── DOWNLOAD ── */
+  #download {
+    background: linear-gradient(135deg, #0d1b3e 0%, #1a2f5e 100%);
+    text-align: center; position: relative; overflow: hidden;
+  }
+  #download .section-title { color: #fff; }
+  #download .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto 2.5rem; }
+  #download .section-tag { color: var(--gold-light); }
+
+  .download-box {
+    display: inline-flex; flex-direction: column; align-items: center;
+    gap: 1.5rem; max-width: 500px;
+  }
+
+  .qr-placeholder {
+    width: 120px; height: 120px; background: #fff;
+    border-radius: 16px; display: flex; align-items: center;
+    justify-content: center; font-size: 3rem;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  }
+
+  .download-steps {
+    display: flex; gap: 2rem; margin-top: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .dl-step { color: rgba(255,255,255,0.75); font-size: 0.85rem; display: flex; align-items: center; gap: 0.4rem; }
+  .dl-step span { color: var(--gold); font-weight: 700; }
+
+  /* ── ABOUT ── */
+  #about { background: var(--bg); transition: background 0.4s; }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+
+  .about-visual {
+    background: linear-gradient(135deg, #0d1b3e, #1a2f5e);
+    border-radius: 28px; padding: 3rem 2rem; text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .about-visual::after {
+    content: ''; position: absolute; top: -40px; right: -40px;
+    width: 180px; height: 180px; border-radius: 50%;
+    background: rgba(201,168,76,0.1);
+  }
+  .about-icon { font-size: 5rem; display: block; margin-bottom: 1rem; }
+  .about-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic; font-size: 1.2rem;
+    color: rgba(255,255,255,0.85); line-height: 1.6;
+  }
+  .about-quote-mark { color: var(--gold); font-size: 3rem; line-height: 0.5; display: block; margin-bottom: 0.5rem; }
+
+  .mission-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .mission-card {
+    background: var(--card-bg); border-radius: 16px; padding: 1.2rem;
+    border: 1px solid var(--border);
+  }
+  .mission-card-icon { font-size: 1.5rem; margin-bottom: 0.4rem; }
+  .mission-card-title { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+  .mission-card-desc { color: var(--text-muted); font-size: 0.8rem; margin-top: 0.2rem; line-height: 1.5; }
+
+  /* ── BLOG ── */
+  #resources { background: var(--off-white); transition: background 0.4s; }
+
+  .search-bar {
+    display: flex; align-items: center; gap: 0.8rem;
+    background: var(--bg); border: 1px solid var(--border);
+    border-radius: 50px; padding: 0.6rem 1rem 0.6rem 1.5rem;
+    max-width: 400px; margin-bottom: 3rem; box-shadow: var(--shadow);
+  }
+  .search-bar input {
+    flex: 1; border: none; background: none; outline: none;
+    color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+  }
+  .search-bar button {
+    background: var(--navy); color: #fff; border: none;
+    border-radius: 50px; padding: 0.4rem 1rem; cursor: pointer;
+    font-size: 0.8rem; font-weight: 600; transition: background 0.2s;
+  }
+  .search-bar button:hover { background: var(--navy-light); }
+  [data-theme="dark"] .search-bar button { background: var(--gold); color: var(--navy); }
+
+  .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.8rem; max-width: 1100px; margin: 0 auto; }
+
+  .blog-card {
+    background: var(--bg); border-radius: 20px; overflow: hidden;
+    border: 1px solid var(--border); transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+  }
+  .blog-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
+  .blog-img {
+    height: 160px; display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+  }
+  .blog-img.c1 { background: linear-gradient(135deg, #0d1b3e, #2a4480); }
+  .blog-img.c2 { background: linear-gradient(135deg, #1a3a1a, #2d5a2d); }
+  .blog-img.c3 { background: linear-gradient(135deg, #3a1a0d, #6b3319); }
+
+  .blog-body { padding: 1.5rem; }
+  .blog-tag {
+    display: inline-block; background: rgba(201,168,76,0.15);
+    color: var(--gold); padding: 0.2rem 0.7rem; border-radius: 50px;
+    font-size: 0.7rem; font-weight: 700; margin-bottom: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+  .blog-title { font-weight: 700; font-size: 1rem; color: var(--text); margin-bottom: 0.5rem; line-height: 1.4; }
+  .blog-excerpt { color: var(--text-muted); font-size: 0.85rem; line-height: 1.6; }
+  .blog-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .blog-date { color: var(--text-muted); font-size: 0.75rem; }
+  .blog-read { color: var(--gold); font-size: 0.8rem; font-weight: 600; text-decoration: none; }
+
+  /* ── COMMUNITY ── */
+  #community { background: var(--bg); transition: background 0.4s; }
+  .community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; max-width: 1100px; margin: 0 auto; }
+
+  .social-links { display: flex; flex-direction: column; gap: 1rem; }
+  .social-link {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.2rem 1.5rem; border-radius: 16px;
+    border: 1px solid var(--border); background: var(--card-bg);
+    text-decoration: none; color: var(--text);
+    transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+    font-weight: 600; font-size: 0.95rem;
+  }
+  .social-link:hover { transform: translateX(6px); box-shadow: var(--shadow); border-color: var(--gold); }
+  .social-icon { font-size: 1.5rem; width: 40px; text-align: center; }
+  .social-desc { color: var(--text-muted); font-size: 0.8rem; font-weight: 400; }
+
+  .testimonials-stack { display: flex; flex-direction: column; gap: 1.2rem; }
+  .testimonial {
+    background: var(--card-bg); border-radius: 16px; padding: 1.5rem;
+    border: 1px solid var(--border); position: relative;
+  }
+  .testimonial-quote { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+  .testimonial-author { display: flex; align-items: center; gap: 0.8rem; }
+  .testimonial-avatar {
+    width: 36px; height: 36px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem; font-weight: 700; color: #fff;
+  }
+  .av1 { background: linear-gradient(135deg, #0d1b3e, #2a4480); }
+  .av2 { background: linear-gradient(135deg, #4a0d3e, #8a1a70); }
+  .av3 { background: linear-gradient(135deg, #0d3e1a, #1a8a3e); }
+  .testimonial-name { font-weight: 700; font-size: 0.85rem; color: var(--text); }
+  .testimonial-role { color: var(--text-muted); font-size: 0.75rem; }
+  .stars { color: var(--gold); font-size: 0.8rem; margin-left: auto; }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--off-white); transition: background 0.4s; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1100px; margin: 0 auto; }
+
+  .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
+  .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+  .form-group label { font-weight: 600; font-size: 0.85rem; color: var(--text); }
+  .form-group input, .form-group textarea, .form-group select {
+    padding: 0.85rem 1.2rem; border: 1px solid var(--border);
+    border-radius: 12px; background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
+    transition: border-color 0.25s, box-shadow 0.25s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus {
+    border-color: var(--gold); box-shadow: 0 0 0 3px rgba(201,168,76,0.12);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+
+  .btn-submit {
+    background: var(--navy); color: #fff; border: none;
+    padding: 1rem 2.5rem; border-radius: 50px; font-weight: 700;
+    font-size: 0.95rem; cursor: pointer; transition: background 0.25s, transform 0.2s;
+    align-self: flex-start;
+  }
+  [data-theme="dark"] .btn-submit { background: var(--gold); color: var(--navy); }
+  .btn-submit:hover { background: var(--navy-light); transform: translateY(-2px); }
+
+  .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+  .contact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.2rem; background: var(--bg); border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  .contact-item-icon { font-size: 1.5rem; }
+  .contact-item-title { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+  .contact-item-val { color: var(--text-muted); font-size: 0.85rem; margin-top: 0.2rem; }
+
+  /* ── PRICING ── */
+  #pricing { background: var(--bg); transition: background 0.4s; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; max-width: 900px; margin: 0 auto; }
+
+  .pricing-card {
+    background: var(--card-bg); border-radius: 24px; padding: 2.5rem 2rem;
+    border: 1px solid var(--border); text-align: center; position: relative;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .pricing-card.featured {
+    background: linear-gradient(135deg, #0d1b3e, #1a2f5e);
+    border-color: var(--gold);
+    transform: scale(1.04);
+  }
+  .pricing-card:hover { transform: translateY(-6px) scale(1.01); box-shadow: var(--shadow-lg); }
+  .pricing-card.featured:hover { transform: translateY(-6px) scale(1.05); }
+
+  .pricing-badge {
+    position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy);
+    padding: 0.25rem 1rem; border-radius: 50px; font-size: 0.72rem; font-weight: 700;
+  }
+  .pricing-plan { font-weight: 700; font-size: 0.85rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-muted); }
+  .pricing-card.featured .pricing-plan { color: rgba(255,255,255,0.6); }
+  .pricing-price {
+    font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 900;
+    color: var(--text); margin: 0.8rem 0 0.3rem;
+  }
+  .pricing-card.featured .pricing-price { color: var(--gold); }
+  .pricing-period { color: var(--text-muted); font-size: 0.8rem; }
+  .pricing-card.featured .pricing-period { color: rgba(255,255,255,0.5); }
+
+  .pricing-features { list-style: none; margin: 1.5rem 0 2rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .pricing-features li { font-size: 0.88rem; color: var(--text-muted); display: flex; align-items: center; gap: 0.5rem; }
+  .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.75); }
+  .pricing-features li::before { content: '✓'; color: var(--gold); font-weight: 700; }
+
+  .btn-pricing {
+    display: block; padding: 0.9rem; border-radius: 50px;
+    font-weight: 700; text-decoration: none; font-size: 0.9rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    border: 2px solid var(--navy); color: var(--navy);
+    background: transparent;
+  }
+  .pricing-card.featured .btn-pricing {
+    background: var(--gold); border-color: var(--gold); color: var(--navy);
+  }
+  .btn-pricing:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #0a0f1e; padding: 4rem 5% 2rem;
+    color: rgba(255,255,255,0.6);
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; max-width: 1200px; margin: 0 auto 3rem; }
+
+  .footer-logo {
+    font-family: 'Playfair Display', serif; font-size: 1.6rem;
+    color: #fff; font-weight: 900; margin-bottom: 0.8rem;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.7; color: rgba(255,255,255,0.5); margin-bottom: 1.5rem; }
+
+  .footer-socials { display: flex; gap: 0.8rem; }
+  .footer-social {
+    width: 36px; height: 36px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; text-decoration: none; color: rgba(255,255,255,0.7);
+    transition: border-color 0.25s, background 0.25s;
+  }
+  .footer-social:hover { border-color: var(--gold); background: rgba(201,168,76,0.15); }
+
+  .footer-col-title { color: #fff; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.2rem; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-links a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 0.88rem; transition: color 0.25s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    max-width: 1200px; margin: 0 auto;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem; display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-copy { font-size: 0.8rem; }
+  .footer-legal { display: flex; gap: 1.5rem; }
+  .footer-legal a { color: rgba(255,255,255,0.4); text-decoration: none; font-size: 0.78rem; transition: color 0.25s; }
+  .footer-legal a:hover { color: var(--gold); }
+
+  /* ── FLOATING BUTTON ── */
+  .float-btn {
+    position: fixed; bottom: 2rem; right: 2rem; z-index: 99;
+    background: var(--gold); color: var(--navy);
+    padding: 0.9rem 1.6rem; border-radius: 50px;
+    font-weight: 700; font-size: 0.88rem; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(201,168,76,0.5);
+    display: flex; align-items: center; gap: 0.5rem;
+    transition: transform 0.25s, box-shadow 0.25s;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  .float-btn:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 12px 32px rgba(201,168,76,0.6); }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 8px 24px rgba(201,168,76,0.5); }
+    50% { box-shadow: 0 8px 36px rgba(201,168,76,0.75); }
+  }
+
+  /* ── POPUP ── */
+  .popup-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(0,0,0,0.6); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .popup-overlay.active { opacity: 1; pointer-events: all; }
+  .popup {
+    background: var(--bg); border-radius: 24px; padding: 2.5rem;
+    max-width: 420px; width: 90%; text-align: center;
+    transform: scale(0.9); transition: transform 0.3s;
+    border: 1px solid var(--border);
+  }
+  .popup-overlay.active .popup { transform: scale(1); }
+  .popup-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .popup-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: 0.5rem; }
+  .popup-desc { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; margin-bottom: 1.5rem; }
+  .popup-close {
+    background: none; border: none; position: absolute;
+    top: 1rem; right: 1.2rem; font-size: 1.4rem; cursor: pointer;
+    color: var(--text-muted); line-height: 1;
+  }
+  .popup { position: relative; }
+
+  /* ── MOBILE ── */
+  .mobile-menu {
+    display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--bg); z-index: 150; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2rem;
+    transition: opacity 0.3s;
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a { color: var(--text); text-decoration: none; font-size: 1.3rem; font-weight: 600; }
+  .mobile-close { position: absolute; top: 1.5rem; right: 1.5rem; background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--text); }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .hero-grid { grid-template-columns: 1fr; text-align: center; }
+    .hero-visual { display: none; }
+    .hero-ctas { justify-content: center; }
+    .hero-sub { margin: 0 auto 2.5rem; }
+    .about-grid, .community-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .stats-bar { gap: 2rem; }
+    .mission-cards { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .pricing-card.featured { transform: scale(1); }
+    .nav-actions .btn-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- POPUP -->
+<div class="popup-overlay" id="popup">
+  <div class="popup">
+    <button class="popup-close" onclick="closePopup()">×</button>
+    <div class="popup-icon">🎉</div>
+    <div class="popup-title">Zenova is Here!</div>
+    <div class="popup-desc">Download the Zenova app today and start studying smarter. Your best grades are waiting!</div>
+    <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-primary" style="display:inline-flex;margin:0 auto;">⬇ Download Now</a>
+  </div>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="closeMobileMenu()">×</button>
+  <a href="#home" onclick="closeMobileMenu()">Home</a>
+  <a href="#features" onclick="closeMobileMenu()">Features</a>
+  <a href="#download" onclick="closeMobileMenu()">Download</a>
+  <a href="#about" onclick="closeMobileMenu()">About</a>
+  <a href="#resources" onclick="closeMobileMenu()">Blog</a>
+  <a href="#community" onclick="closeMobileMenu()">Community</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#home">Zen<span>ova</span></a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#download">Download</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#resources">Blog</a></li>
+    <li><a href="#community">Community</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-actions">
+    <button class="theme-toggle" id="themeToggle" title="Toggle theme">🌙</button>
+    <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-nav">⬇ Download</a>
+    <button class="hamburger" onclick="openMobileMenu()">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-particles">
+    <div class="particle"></div><div class="particle"></div>
+    <div class="particle"></div><div class="particle"></div>
+  </div>
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge">🎓 The Ultimate Study Companion</div>
+      <h1 class="hero-title">
+        Study Smarter,
+        <span class="accent">Win Bigger.</span>
+      </h1>
+      <p class="hero-sub">Zenova brings together every tool a student needs — focus timers, flashcards, goal tracking, motivation and more — all in one powerful app.</p>
+      <div class="hero-ctas">
+        <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-primary">⬇ Download App</a>
+        <a href="#community" class="btn-outline">👥 Join Community</a>
+        <a href="#features" class="btn-outline">🚀 Start Learning</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="phone-mockup">
+        <div class="phone-screen" style="padding:0;min-height:480px;background:#000;overflow:hidden;border-radius:28px;position:relative;">
+          <img src="1.jpeg" alt="Zenova App Screenshot" style="width:100%;height:100%;object-fit:cover;border-radius:28px;display:block;" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div style="display:none;flex-direction:column;gap:0.8rem;padding:1.5rem 1rem;background:linear-gradient(160deg,#1a2f5e,#0d1b3e);height:100%;border-radius:28px;">
+            <div class="phone-header">
+              <div class="phone-header-title">Zenova</div>
+              <div class="phone-header-sub">Study Smarter • Win Bigger</div>
+            </div>
+            <div class="phone-card"><span class="phone-card-icon">⏱</span><div><div class="phone-card-label">Focus Timer</div><div class="phone-card-sub">25:00 remaining</div></div></div>
+            <div class="phone-progress"><div class="progress-label">Today's Goal — 4/6 complete</div><div class="progress-bar"><div class="progress-fill" style="width:67%"></div></div></div>
+            <div class="phone-card"><span class="phone-card-icon">🃏</span><div><div class="phone-card-label">Flashcards</div><div class="phone-card-sub">Chemistry • 24 cards</div></div></div>
+            <div class="phone-quote">"Push yourself, because no one else is going to do it for you." 🌟</div>
+            <div class="phone-card"><span class="phone-card-icon">🏆</span><div><div class="phone-card-label">Points Earned</div><div class="phone-card-sub">340 XP today</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stat-item"><div class="stat-num">10+</div><div class="stat-label">Study Tools</div></div>
+  <div class="stat-item"><div class="stat-num">100%</div><div class="stat-label">Free to Download</div></div>
+  <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">Motivation</div></div>
+  <div class="stat-item"><div class="stat-num">A+</div><div class="stat-label">Results Awaiting</div></div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-header center">
+    <div class="section-tag">What's Inside</div>
+    <h2 class="section-title">Everything You Need to Excel</h2>
+    <p class="section-sub">Zenova packs 10 powerful tools into one clean app — built to help students focus, stay organised, and stay motivated.</p>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">⏱</span>
+      <div class="feature-title">Focus Timer</div>
+      <div class="feature-desc">Powered by the Pomodoro technique, the focus timer helps you concentrate in structured sprints so you never burn out.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🃏</span>
+      <div class="feature-title">Flashcards</div>
+      <div class="feature-desc">Create and review digital flashcards for any subject. Perfect for memorisation, revision, and exam prep.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📅</span>
+      <div class="feature-title">Exam Countdown</div>
+      <div class="feature-desc">Set your upcoming exams and watch the countdown. Never be caught off-guard — always be prepared.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">💬</span>
+      <div class="feature-title">Motivational Words</div>
+      <div class="feature-desc">Start every study session with a fresh daily quote handpicked to keep your mindset strong and your energy high.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎧</span>
+      <div class="feature-title">Audio Motivation</div>
+      <div class="feature-desc">Listen to curated study and positivity audios. Let the right energy fuel your focus while you work.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎯</span>
+      <div class="feature-title">Goal Tracker</div>
+      <div class="feature-desc">Set weekly and monthly study goals, then watch your progress in real time. Big dreams, broken into daily actions.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">📝</span>
+      <div class="feature-title">Notes Section</div>
+      <div class="feature-desc">Capture ideas, summaries, and key points instantly. Your digital notebook is always just a tap away.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">✅</span>
+      <div class="feature-title">To-Do Lists</div>
+      <div class="feature-desc">Organise your daily study sessions with smart checklists. Tick tasks off and feel the satisfaction of progress.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌿</span>
+      <div class="feature-title">Skincare & Daily Routine Tracker</div>
+      <div class="feature-desc">Students are whole people. Track your daily self-care routines and keep every area of your life in order.</div>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🏆</span>
+      <div class="feature-title">Gamification</div>
+      <div class="feature-desc">Earn XP points and badges for completing tasks. Learning becomes addictive when there's a reward system behind it.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section id="download">
+  <div class="section-tag">Get the App</div>
+  <h2 class="section-title" style="color:#fff;margin-bottom:0.8rem">Download Zenova Today</h2>
+  <p class="section-sub" style="color:rgba(255,255,255,0.65);margin:0 auto 3rem">Get all your study tools on the go — completely free. Tap below to download directly to your Android device.</p>
+  <div class="download-box" style="margin:0 auto">
+    <div style="width:220px;border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.4);">
+      <img src="3.jpeg" alt="Zenova App Preview" style="width:100%;display:block;object-fit:cover;" onerror="this.style.display='none'">
+    </div>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.8rem">Tap the button below to download</p>
+    <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem">
+      ⬇ Download APK (Free)
+    </a>
+    <div class="download-steps">
+      <div class="dl-step"><span>1.</span> Tap Download</div>
+      <div class="dl-step"><span>2.</span> Allow installs</div>
+      <div class="dl-step"><span>3.</span> Install & Launch</div>
+    </div>
+
+    <!-- VIDEO PREVIEW -->
+    <div style="margin-top:2.5rem;width:100%;max-width:680px;">
+      <p style="color:rgba(255,255,255,0.5);font-size:0.78rem;letter-spacing:1.2px;text-transform:uppercase;margin-bottom:1rem;">▶ See Zenova in Action</p>
+      <div style="border-radius:20px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.5);border:1px solid rgba(255,255,255,0.1);">
+        <video
+          controls
+          preload="metadata"
+          poster="3.jpeg"
+          style="width:100%;display:block;max-height:420px;background:#000;"
+        >
+          <source src="1.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+      <p style="color:rgba(255,255,255,0.35);font-size:0.75rem;margin-top:0.8rem;">Watch how Zenova works — from setup to your first study session.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual" style="padding:0;overflow:hidden;min-height:320px;">
+      <img src="2.jpeg" alt="Zenova App" style="width:100%;height:100%;object-fit:cover;border-radius:28px;display:block;min-height:320px;" onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
+      <div style="display:none;padding:3rem 2rem;text-align:center;">
+        <span class="about-icon">🎓</span>
+        <div class="about-quote">
+          <span class="about-quote-mark">"</span>
+          We built Zenova because every student deserves the tools to reach their full potential.
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag">Our Story</div>
+      <h2 class="section-title">Built for Students, By Students</h2>
+      <p class="section-sub">Zenova was born from a simple belief: studying hard isn't enough — you need to study smart. We created a platform that combines the best tools for productivity, motivation, and wellbeing in one seamless experience.</p>
+      <div class="mission-cards">
+        <div class="mission-card">
+          <div class="mission-card-icon">🌟</div>
+          <div class="mission-card-title">Our Mission</div>
+          <div class="mission-card-desc">Help students study smarter, stay motivated, and achieve their academic goals.</div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-card-icon">🔭</div>
+          <div class="mission-card-title">Our Vision</div>
+          <div class="mission-card-desc">A world where every student has access to world-class study tools for free.</div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-card-icon">💡</div>
+          <div class="mission-card-title">Innovation</div>
+          <div class="mission-card-desc">Continuously improving Zenova based on what real students actually need.</div>
+        </div>
+        <div class="mission-card">
+          <div class="mission-card-icon">🤝</div>
+          <div class="mission-card-title">Community</div>
+          <div class="mission-card-desc">Building a global network of students who support and inspire each other.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESOURCES / BLOG -->
+<section id="resources">
+  <div class="section-header">
+    <div class="section-tag">Resources & Blog</div>
+    <h2 class="section-title">Study Guides & Insights</h2>
+    <p class="section-sub">Tips, hacks, and guides to help you study better, stay focused, and crush your exams.</p>
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search articles, guides…" id="blogSearch" oninput="filterBlog()">
+    <button>Search</button>
+  </div>
+  <div class="blog-grid" id="blogGrid">
+    <div class="blog-card" data-tags="focus productivity">
+      <div class="blog-img c1">📖</div>
+      <div class="blog-body">
+        <span class="blog-tag">Productivity</span>
+        <div class="blog-title">10 Study Hacks That Actually Work in 2025</div>
+        <div class="blog-excerpt">Science-backed strategies that top students swear by — from the Feynman technique to active recall.</div>
+        <div class="blog-footer"><span class="blog-date">Mar 2025</span><a class="blog-read" href="#">Read →</a></div>
+      </div>
+    </div>
+    <div class="blog-card" data-tags="motivation mindset">
+      <div class="blog-img c2">🌱</div>
+      <div class="blog-body">
+        <span class="blog-tag">Motivation</span>
+        <div class="blog-title">How to Stay Motivated When Studying Gets Hard</div>
+        <div class="blog-excerpt">Practical mindset shifts and daily habits to keep your drive alive even on the toughest days.</div>
+        <div class="blog-footer"><span class="blog-date">Feb 2025</span><a class="blog-read" href="#">Read →</a></div>
+      </div>
+    </div>
+    <div class="blog-card" data-tags="exam prep revision">
+      <div class="blog-img c3">📚</div>
+      <div class="blog-body">
+        <span class="blog-tag">Exam Prep</span>
+        <div class="blog-title">The Ultimate WAEC/JAMB Revision Checklist</div>
+        <div class="blog-excerpt">A week-by-week revision plan to help Nigerian students conquer national exams with confidence.</div>
+        <div class="blog-footer"><span class="blog-date">Jan 2025</span><a class="blog-read" href="#">Read →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMUNITY -->
+<section id="community">
+  <div class="community-grid">
+    <div>
+      <div class="section-tag">Community</div>
+      <h2 class="section-title">Join the Zenova Family</h2>
+      <p class="section-sub" style="margin-bottom:2rem">Connect with thousands of students, share wins, ask for help, and grow together.</p>
+      <div class="social-links">
+        <a class="social-link" href="https://www.instagram.com/zenovastudy/" target="_blank">
+          <span class="social-icon">📸</span>
+          <div><div>Instagram</div><div class="social-desc">@zenovastudy — daily tips & motivation</div></div>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@zenova.study" target="_blank">
+          <span class="social-icon">🎵</span>
+          <div><div>TikTok</div><div class="social-desc">@zenova.study — short study hacks</div></div>
+        </a>
+        <a class="social-link" href="https://www.tiktok.com/@zenovastudy" target="_blank">
+          <span class="social-icon">🎵</span>
+          <div><div>TikTok (Backup)</div><div class="social-desc">@zenovastudy — extra content</div></div>
+        </a>
+        <a class="social-link" href="https://web.facebook.com/profile.php?id=61588573439813" target="_blank">
+          <span class="social-icon">📘</span>
+          <div><div>Facebook</div><div class="social-desc">Zenova Community Page</div></div>
+        </a>
+        <a class="social-link" href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank">
+          <span class="social-icon">💬</span>
+          <div><div>WhatsApp Community</div><div class="social-desc">Join our student support channel</div></div>
+        </a>
+        <a class="social-link" href="https://www.youtube.com/@zenovastudy" target="_blank">
+          <span class="social-icon">▶️</span>
+          <div><div>YouTube</div><div class="social-desc">@zenovastudy — study videos & motivation</div></div>
+        </a>
+      </div>
+    </div>
+    <div>
+      <div style="margin-bottom:1rem;font-weight:700;color:var(--text-muted);font-size:0.8rem;letter-spacing:1px;text-transform:uppercase;">What Students Say</div>
+      <div class="testimonials-stack">
+        <div class="testimonial">
+          <div class="testimonial-quote">"Zenova changed the way I study completely. The focus timer alone helped me go from failing to passing with B's in just 2 months!"</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar av1">A</div>
+            <div><div class="testimonial-name">Amara O.</div><div class="testimonial-role">SS3 Student, Lagos</div></div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"The gamification feature makes studying actually fun. I keep coming back just to earn more XP points. It's addictive in the best way."</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar av2">T</div>
+            <div><div class="testimonial-name">Temi A.</div><div class="testimonial-role">100L Student, Ibadan</div></div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+        <div class="testimonial">
+          <div class="testimonial-quote">"I love how everything is in one place. Notes, goals, flashcards — no more switching between 5 different apps!"</div>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar av3">K</div>
+            <div><div class="testimonial-name">Kelechi M.</div><div class="testimonial-role">JAMB Candidate, Enugu</div></div>
+            <div class="stars">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header center">
+    <div class="section-tag">Plans</div>
+    <h2 class="section-title">Simple, Honest Pricing</h2>
+    <p class="section-sub">Start free. Upgrade when you're ready for the full Zenova experience.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card">
+      <div class="pricing-plan">Free</div>
+      <div class="pricing-price">₦0</div>
+      <div class="pricing-period">Forever free</div>
+      <ul class="pricing-features">
+        <li>Focus Timer</li>
+        <li>Basic Flashcards</li>
+        <li>Daily Motivational Quote</li>
+        <li>To-Do Lists</li>
+        <li>Basic Notes</li>
+      </ul>
+      <a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="btn-pricing">Download Free</a>
+    </div>
+    <div class="pricing-card featured">
+      <div class="pricing-badge">Most Popular</div>
+      <div class="pricing-plan">Pro</div>
+      <div class="pricing-price" style="color:var(--gold)">₦1,500</div>
+      <div class="pricing-period">per month</div>
+      <ul class="pricing-features">
+        <li>Everything in Free</li>
+        <li>Unlimited Flashcards</li>
+        <li>Audio Motivation Library</li>
+        <li>Advanced Goal Tracker</li>
+        <li>Gamification & Badges</li>
+        <li>Skincare Tracker</li>
+        <li>Priority Support</li>
+      </ul>
+      <a href="#contact" class="btn-pricing">Coming Soon</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-header">
+    <div class="section-tag">Get in Touch</div>
+    <h2 class="section-title">We'd Love to Hear From You</h2>
+    <p class="section-sub">Have a question, suggestion, or just want to say hello? Reach out — we reply fast.</p>
+  </div>
+  <div class="contact-grid">
+    <form class="contact-form" id="contactForm">
+      <div class="form-group">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="e.g. Amara Okafor" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="How can we help?">
+      </div>
+      <button type="submit" class="btn-submit" id="submitBtn">Send Message ✉</button>
+    </form>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="contact-item-icon">📧</div>
+        <div><div class="contact-item-title">Email Us</div><div class="contact-item-val" style="color:var(--gold)">zenovaofficial188@gmail.com</div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">📸</div>
+        <div><div class="contact-item-title">Instagram DMs</div><div class="contact-item-val"><a href="https://www.instagram.com/zenovastudy/" target="_blank" style="color:var(--gold);text-decoration:none">@zenovastudy</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">💬</div>
+        <div><div class="contact-item-title">WhatsApp Community</div><div class="contact-item-val"><a href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" style="color:var(--gold);text-decoration:none">Join our student channel</a></div></div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-item-icon">⏰</div>
+        <div><div class="contact-item-title">Response Time</div><div class="contact-item-val">Usually within 24 hours</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">Zen<span>ova</span></div>
+      <p class="footer-tagline">Empowering students to study smarter, stay motivated, and win bigger — one session at a time.</p>
+      <div class="footer-socials">
+        <a class="footer-social" href="https://www.instagram.com/zenovastudy/" target="_blank" title="Instagram">📸</a>
+        <a class="footer-social" href="https://www.tiktok.com/@zenova.study" target="_blank" title="TikTok">🎵</a>
+        <a class="footer-social" href="https://web.facebook.com/profile.php?id=61588573439813" target="_blank" title="Facebook">📘</a>
+        <a class="footer-social" href="https://whatsapp.com/channel/0029VbCH1j60wak1HKVmfG3I" target="_blank" title="WhatsApp">💬</a>
+        <a class="footer-social" href="https://www.youtube.com/@zenovastudy" target="_blank" title="YouTube">▶️</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#download">Download</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Resources</div>
+      <ul class="footer-links">
+        <li><a href="#resources">Blog</a></li>
+        <li><a href="#resources">Study Guides</a></li>
+        <li><a href="#community">Community</a></li>
+        <li><a href="#contact">Support</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Legal</div>
+      <ul class="footer-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2025 Zenova. All rights reserved.</span>
+    <div class="footer-legal">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING BUTTON -->
+<a href="https://apk.e-droid.net/apk/app3961854-0amvsn.apk?v=1" class="float-btn">⬇ Download Zenova</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Theme toggle
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('click', () => {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+    toggle.textContent = isDark ? '🌙' : '☀️';
+  });
+
+  // Popup
+  setTimeout(() => {
+    document.getElementById('popup').classList.add('active');
+  }, 3000);
+  function closePopup() {
+    document.getElementById('popup').classList.remove('active');
+  }
+  document.getElementById('popup').addEventListener('click', function(e) {
+    if (e.target === this) closePopup();
+  });
+
+  // Mobile menu
+  function openMobileMenu() { document.getElementById('mobileMenu').classList.add('open'); }
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
+  // Blog search
+  function filterBlog() {
+    const q = document.getElementById('blogSearch').value.toLowerCase();
+    document.querySelectorAll('.blog-card').forEach(card => {
+      const text = card.innerText.toLowerCase() + ' ' + (card.dataset.tags || '');
+      card.style.display = text.includes(q) ? '' : 'none';
+    });
+  }
+
+  // Contact form — opens Gmail compose with pre-filled details
+  const contactForm = document.getElementById('contactForm');
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim() || 'Message from Zenova Website';
+      const body    = encodeURIComponent('Name: ' + name + '\nFrom: ' + email + '\n\n--- Sent via Zenova website ---');
+      const gmailURL = 'https://mail.google.com/mail/?view=cm&fs=1&to=zenovaofficial188' + '@' + 'gmail.com&su=' + encodeURIComponent(subject) + '&body=' + body;
+      window.open(gmailURL, '_blank');
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = '✓ Gmail Opened!';
+      btn.style.background = '#2d6a2d';
+      setTimeout(() => {
+        btn.textContent = 'Send Message ✉';
+        btn.style.background = '';
+        contactForm.reset();
+      }, 3000);
+    });
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver(entries => {
+ 
